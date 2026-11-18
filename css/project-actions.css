@@ -1,0 +1,103 @@
+
+/* ==========================================
+   ASTA WEB STUDIO — MENU DE AÇÕES
+========================================== */
+
+.asta-mission-card {
+  position: relative;
+}
+
+.asta-mission-actions.project-actions-enhanced {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #343641;
+}
+
+.project-actions-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.project-actions-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #414451;
+  border-radius: 10px;
+  background: #282a35;
+  color: #fff;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.project-actions-toggle:hover,
+.project-actions-toggle[aria-expanded="true"] {
+  background: #e5254c;
+  border-color: #e5254c;
+}
+
+.project-actions-toggle:focus-visible {
+  outline: 2px solid #ff6685;
+  outline-offset: 3px;
+}
+
+.project-actions-menu[hidden] {
+  display: none !important;
+}
+
+.project-actions-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 9px);
+  z-index: 100;
+  width: 205px;
+  padding: 7px;
+  background: #292b36;
+  border: 1px solid #414451;
+  border-radius: 12px;
+  box-shadow: 0 16px 45px #0009;
+}
+
+.project-actions-menu .project-menu-item {
+  display: block;
+  width: 100%;
+  min-height: 39px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #e9e9ef;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.project-actions-menu .project-menu-item:hover {
+  background: #3a3d49;
+}
+
+.project-actions-menu .project-menu-danger {
+  color: #ff6b86;
+}
+
+.project-actions-menu .project-menu-danger:hover {
+  background: #542536;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .project-actions-menu {
+    width: min(205px, 75vw);
+  }
+}

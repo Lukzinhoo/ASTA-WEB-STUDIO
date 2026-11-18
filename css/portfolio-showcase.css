@@ -1,0 +1,1123 @@
+
+/* ==========================================
+   ASTA WEB STUDIO — PORTFÓLIO 2.0
+   Tema: Black Clover / Preto e Vermelho
+   Design responsivo e profissional
+
+   ATUALIZAÇÃO:
+   Etiqueta WEBSITE removida
+========================================== */
+
+#projetos {
+  --portfolio-red: #e62249;
+  --portfolio-red-light: #ff4568;
+  --portfolio-bg: #09090e;
+  --portfolio-card: #15151d;
+  --portfolio-border: rgba(255, 255, 255, 0.09);
+  --portfolio-text: #f7f7fa;
+  --portfolio-muted: #a5a5b5;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  padding-top: clamp(70px, 9vw, 125px);
+  padding-bottom: clamp(70px, 9vw, 120px);
+
+  background:
+    radial-gradient(
+      ellipse at 85% 8%,
+      rgba(230, 34, 73, 0.14),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 5% 88%,
+      rgba(122, 15, 40, 0.11),
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      #08090d 0%,
+      #101016 50%,
+      #08090d 100%
+    );
+}
+
+/* ==========================================
+   FUNDO GAMER
+========================================== */
+
+#projetos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 78%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 78%,
+    transparent
+  );
+}
+
+#projetos::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: min(900px, 100%);
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(230, 34, 73, 0.55),
+    transparent
+  );
+}
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+#projetos .projects-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+#projetos .section-label {
+  display: inline-block;
+  margin-bottom: 15px;
+
+  color: var(--portfolio-red-light);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#projetos .section-title {
+  margin: 0;
+
+  color: #fff;
+
+  font-family: "Rajdhani", "Inter", sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+#projetos .section-title span {
+  color: var(--portfolio-red);
+}
+
+#projetos .projects-heading p {
+  max-width: 430px;
+  margin: 0;
+
+  color: var(--portfolio-muted);
+
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* ==========================================
+   BARRA DE FILTROS
+========================================== */
+
+#projetos .projects-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 18px;
+  margin-bottom: 32px;
+  padding-bottom: 23px;
+
+  border-bottom: 1px solid var(--portfolio-border);
+}
+
+#projetos .project-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#projetos .filter-btn {
+  position: relative;
+
+  min-height: 43px;
+  padding: 10px 20px;
+
+  border: 1px solid #343440;
+  border-radius: 9px;
+
+  background: rgba(25, 25, 33, 0.95);
+  color: #b9b9c7;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+#projetos .filter-btn:hover {
+  color: #fff;
+  border-color: var(--portfolio-red);
+
+  background: rgba(230, 34, 73, 0.12);
+  transform: translateY(-2px);
+}
+
+#projetos .filter-btn.active,
+#projetos .filter-btn[aria-pressed="true"] {
+  color: #fff;
+  border-color: var(--portfolio-red);
+
+  background: linear-gradient(
+    135deg,
+    #f02c53,
+    #b90c31
+  );
+
+  box-shadow:
+    0 7px 25px rgba(230, 34, 73, 0.24);
+}
+
+#projetos .filter-btn:focus-visible {
+  outline: 3px solid #ff6785;
+  outline-offset: 3px;
+}
+
+#projetos .project-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #a8a8b6;
+
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#projetos .project-count::before {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--portfolio-red);
+
+  box-shadow:
+    0 0 10px rgba(230, 34, 73, 0.7);
+}
+
+/* ==========================================
+   GRID PRINCIPAL
+========================================== */
+
+#projetos .projects-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  align-items: stretch;
+  gap: 30px;
+}
+
+/* ==========================================
+   CARTÕES DOS PROJETOS
+========================================== */
+
+#projetos .projects-grid > article,
+#projetos .projects-grid > .project-card,
+#projetos .projects-grid > .asta-project-card,
+#projetos .projects-grid > .portfolio-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid var(--portfolio-border);
+  border-radius: 18px;
+
+  background: linear-gradient(
+    160deg,
+    #1b1b25,
+    #13131a 72%
+  );
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+#projetos .projects-grid > article::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  border-radius: inherit;
+  border: 1px solid transparent;
+
+  pointer-events: none;
+
+  transition: border-color 0.35s ease;
+}
+
+#projetos .projects-grid > article:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(230, 34, 73, 0.6);
+
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.4),
+    0 0 35px rgba(230, 34, 73, 0.09);
+}
+
+#projetos .projects-grid > article:hover::before {
+  border-color: rgba(255, 80, 110, 0.18);
+}
+
+/* ==========================================
+   ÁREA DE PRÉVIA
+========================================== */
+
+#projetos .project-cover,
+#projetos .project-preview,
+#projetos .asta-project-preview,
+#projetos .portfolio-preview,
+#projetos .project-image,
+#projetos .project-image-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 310px;
+
+  padding: 22px 22px 0;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 90%,
+      color-mix(
+        in srgb,
+        var(--project-glow, #e62249) 16%,
+        transparent
+      ),
+      transparent 70%
+    ),
+    linear-gradient(
+      145deg,
+      #1d1720,
+      #0d0d13
+    );
+}
+
+#projetos .project-cover::before,
+#projetos .asta-project-preview::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 25px 25px;
+}
+
+/* ==========================================
+   MOCKUP DE NAVEGADOR
+========================================== */
+
+#projetos .asta-browser {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 285px;
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+
+  background: #0b0b10;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(230, 34, 73, 0.05);
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+#projetos .asta-project-card:hover .asta-browser {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(230, 34, 73, 0.14);
+}
+
+/* ==========================================
+   BARRA SUPERIOR DO NAVEGADOR
+========================================== */
+
+#projetos .asta-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  flex-shrink: 0;
+
+  height: 37px;
+  padding: 0 13px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background: #20202a;
+}
+
+#projetos .asta-browser-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#projetos .asta-browser-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  background: #ff5b62;
+}
+
+#projetos .asta-browser-dot:nth-child(2) {
+  background: #f5bf4f;
+}
+
+#projetos .asta-browser-dot:nth-child(3) {
+  background: #48c978;
+}
+
+#projetos .asta-browser-address {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+
+  padding: 5px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+
+  background: #15151d;
+  color: #9292a2;
+
+  font-size: 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   TELA E CAPTURA DO SITE
+========================================== */
+
+#projetos .asta-browser-screen {
+  position: relative;
+
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+
+  background: #09090e;
+}
+
+#projetos .asta-browser-screen.asta-preview-clickable {
+  cursor: zoom-in;
+}
+
+#projetos .asta-browser-screen.asta-preview-clickable:focus-visible {
+  outline: 3px solid #ff5278;
+  outline-offset: -3px;
+}
+
+#projetos .projects-grid img {
+  display: block;
+  max-width: 100%;
+}
+
+#projetos .asta-browser-screen .asta-preview-image {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  max-width: none;
+
+  object-fit: cover;
+  object-position: top center;
+
+  transition:
+    transform 0.6s ease,
+    filter 0.4s ease;
+}
+
+#projetos .asta-project-card:hover .asta-preview-image {
+  transform: scale(1.035);
+}
+
+/* ==========================================
+   IMAGENS EM CARTÕES ANTIGOS
+========================================== */
+
+#projetos .project-preview img,
+#projetos .portfolio-preview img,
+#projetos .project-image img,
+#projetos .project-image-wrapper img {
+  width: 100%;
+  height: 280px;
+
+  object-fit: cover;
+  object-position: top center;
+
+  transition: transform 0.5s ease;
+}
+
+#projetos .project-card:hover .project-preview img,
+#projetos .portfolio-card:hover img {
+  transform: scale(1.025);
+}
+
+/* ==========================================
+   PRÉVIA SEM IMAGEM
+========================================== */
+
+#projetos .asta-preview-fallback {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(230, 34, 73, 0.14),
+      transparent 65%
+    ),
+    #0c0c13;
+}
+
+#projetos .asta-preview-symbol {
+  display: grid;
+  place-items: center;
+
+  width: 80px;
+  height: 80px;
+
+  border: 1px solid rgba(230, 34, 73, 0.3);
+  border-radius: 20px;
+
+  background: rgba(230, 34, 73, 0.08);
+  color: #ff4568;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 0 30px rgba(230, 34, 73, 0.07);
+}
+
+#projetos .asta-preview-name {
+  max-width: 100%;
+
+  color: #eee;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   ETIQUETA WEBSITE REMOVIDA
+
+   Remove a categoria e a faixa escura
+   sem deixar espaço vazio.
+========================================== */
+
+#projetos .project-category,
+#projetos .asta-category {
+  display: none !important;
+}
+
+/* ==========================================
+   CONTEÚDO DOS CARTÕES
+========================================== */
+
+#projetos .project-content,
+#projetos .asta-project-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 27px 27px 25px;
+}
+
+#projetos .asta-project-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 13px;
+}
+
+#projetos .projects-grid h3,
+#projetos .asta-project-title {
+  margin: 0;
+
+  color: var(--portfolio-text);
+
+  font-family: "Rajdhani", "Inter", sans-serif;
+  font-size: clamp(23px, 2.5vw, 29px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+
+  overflow-wrap: anywhere;
+}
+
+#projetos .asta-project-number {
+  flex-shrink: 0;
+
+  color: rgba(230, 34, 73, 0.65);
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#projetos .projects-grid p,
+#projetos .asta-project-description {
+  margin: 0;
+
+  color: #a9a9b9;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+
+  overflow-wrap: anywhere;
+}
+
+#projetos .asta-project-description {
+  margin-bottom: 22px;
+}
+
+/* ==========================================
+   TECNOLOGIAS
+========================================== */
+
+#projetos .project-tags,
+#projetos .asta-project-tags,
+#projetos .project-tech,
+#projetos .project-techs,
+#projetos .project-technologies,
+#projetos .asta-project-tech {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#projetos .asta-project-tags {
+  margin-bottom: 24px;
+}
+
+#projetos .project-tags span,
+#projetos .asta-project-tags span,
+#projetos .project-tech span,
+#projetos .project-techs span,
+#projetos .project-technologies span,
+#projetos .asta-project-tech span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 28px;
+  padding: 6px 11px;
+
+  border: 1px solid rgba(230, 34, 73, 0.22);
+  border-radius: 6px;
+
+  background: rgba(230, 34, 73, 0.065);
+  color: #e7bdc8;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+#projetos .asta-project-card:hover .asta-project-tags span {
+  border-color: rgba(230, 34, 73, 0.38);
+}
+
+/* ==========================================
+   LINKS E BOTÕES
+========================================== */
+
+#projetos .project-links,
+#projetos .asta-project-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: auto;
+}
+
+#projetos .project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 43px;
+  padding: 11px 17px;
+
+  border: 1px solid #3b3b48;
+  border-radius: 8px;
+
+  background: #23232d;
+  color: #f0f0f5;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  text-align: center;
+  text-decoration: none;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+#projetos .project-link.primary {
+  border-color: #d91c43;
+
+  background: linear-gradient(
+    135deg,
+    #f02c53,
+    #b90c31
+  );
+
+  color: #fff;
+
+  box-shadow:
+    0 7px 20px rgba(230, 34, 73, 0.15);
+}
+
+#projetos a.project-link:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--portfolio-red-light);
+  background: #34303c;
+  color: #fff;
+}
+
+#projetos a.project-link.primary:hover {
+  background: linear-gradient(
+    135deg,
+    #ff4568,
+    #d41740
+  );
+
+  box-shadow:
+    0 10px 28px rgba(230, 34, 73, 0.28);
+}
+
+#projetos .project-link.disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+#projetos .projects-grid a:focus-visible {
+  outline: 3px solid #ff5278;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   ESTADO VAZIO E CARREGAMENTO
+========================================== */
+
+#projetos .projects-empty,
+#projetos .asta-projects-empty {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 220px;
+  padding: 40px 25px;
+
+  border: 1px dashed rgba(230, 34, 73, 0.3);
+  border-radius: 16px;
+
+  background: rgba(20, 20, 28, 0.75);
+
+  color: #c3c3cf;
+
+  text-align: center;
+  line-height: 1.7;
+}
+
+#projetos .projects-empty strong {
+  color: #fff;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+#projetos .projects-empty p {
+  max-width: 430px;
+  margin: 0;
+}
+
+/* ==========================================
+   RODAPÉ DO PORTFÓLIO
+========================================== */
+
+#projetos .projects-disclaimer {
+  max-width: 650px;
+  margin: 40px auto 0;
+
+  color: #878797;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ==========================================
+   ELEMENTOS OCULTOS
+========================================== */
+
+#projetos .projects-grid > [hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   TELAS GRANDES
+========================================== */
+
+@media (min-width: 1400px) {
+  #projetos .projects-grid {
+    gap: 36px;
+  }
+
+  #projetos .project-cover,
+  #projetos .asta-project-preview {
+    min-height: 350px;
+    padding: 26px 26px 0;
+  }
+
+  #projetos .asta-browser {
+    height: 324px;
+  }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1000px) {
+  #projetos .projects-grid {
+    gap: 20px;
+  }
+
+  #projetos .project-cover,
+  #projetos .asta-project-preview {
+    min-height: 255px;
+    padding: 16px 16px 0;
+  }
+
+  #projetos .asta-browser {
+    height: 239px;
+  }
+
+  #projetos .project-content,
+  #projetos .asta-project-content {
+    padding: 22px;
+  }
+}
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 700px) {
+  #projetos {
+    padding-top: 70px;
+    padding-bottom: 75px;
+  }
+
+  #projetos .projects-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+
+    margin-bottom: 27px;
+  }
+
+  #projetos .section-title {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+
+  #projetos .projects-heading p {
+    max-width: 100%;
+    font-size: 13px;
+  }
+
+  #projetos .projects-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
+  #projetos .project-filters {
+    width: 100%;
+    gap: 8px;
+  }
+
+  #projetos .filter-btn {
+    min-height: 40px;
+    padding: 10px 13px;
+    font-size: 11px;
+  }
+
+  #projetos .projects-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  #projetos .project-cover,
+  #projetos .asta-project-preview {
+    min-height: 270px;
+    padding: 16px 16px 0;
+  }
+
+  #projetos .asta-browser {
+    height: 254px;
+  }
+
+  #projetos .project-content,
+  #projetos .asta-project-content {
+    padding: 22px 20px 23px;
+  }
+
+  #projetos .projects-grid h3,
+  #projetos .asta-project-title {
+    font-size: 25px;
+  }
+
+  #projetos .asta-project-number {
+    font-size: 18px;
+  }
+
+  #projetos .asta-project-description {
+    margin-bottom: 18px;
+  }
+
+  #projetos .asta-project-tags {
+    margin-bottom: 21px;
+  }
+
+  #projetos .project-link {
+    min-height: 42px;
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+
+  #projetos .projects-disclaimer {
+    margin-top: 30px;
+  }
+}
+
+/* ==========================================
+   CELULARES PEQUENOS
+========================================== */
+
+@media (max-width: 390px) {
+  #projetos .filter-btn {
+    padding: 9px 11px;
+    font-size: 10px;
+  }
+
+  #projetos .project-cover,
+  #projetos .asta-project-preview {
+    min-height: 235px;
+    padding: 12px 12px 0;
+  }
+
+  #projetos .asta-browser {
+    height: 223px;
+  }
+
+  #projetos .asta-browser-bar {
+    height: 33px;
+    padding: 0 9px;
+  }
+
+  #projetos .asta-browser-address {
+    font-size: 9px;
+  }
+
+  #projetos .project-content,
+  #projetos .asta-project-content {
+    padding: 19px 17px 21px;
+  }
+
+  #projetos .project-links,
+  #projetos .asta-project-links {
+    gap: 8px;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  #projetos .projects-grid > article,
+  #projetos .asta-browser,
+  #projetos .asta-preview-image,
+  #projetos .projects-grid img,
+  #projetos .filter-btn,
+  #projetos .project-link {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  #projetos .projects-grid > article:hover,
+  #projetos .asta-project-card:hover .asta-browser,
+  #projetos .asta-project-card:hover .asta-preview-image {
+    transform: none !important;
+  }
+}
+
+/* ==========================================
+   FIM — ASTA WEB STUDIO PORTFÓLIO 2.0
+========================================== */

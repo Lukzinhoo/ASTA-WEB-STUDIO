@@ -1,0 +1,273 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   TOUROS NEGROS — REFINAMENTO DOS PROJETOS
+========================================== */
+
+/* ORGANIZAÇÃO DA BARRA DE PESQUISA */
+
+#view-missions .project-toolbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+#view-missions .project-search,
+#view-missions .project-filter {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+  background: #1c1e27;
+  border: 1px solid #353845;
+  border-radius: 11px;
+  color: #f6f6fa;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+#view-missions .project-search:focus,
+#view-missions .project-filter:focus {
+  border-color: #e5254c;
+  box-shadow: 0 0 0 3px rgba(229,37,76,.12);
+}
+
+#view-missions .project-count {
+  grid-column: 1 / -1;
+  color: #9699ab;
+  font-size: 12px;
+}
+
+/* GRID DOS PROJETOS */
+
+#missions-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, 310px), 1fr)
+  );
+  align-items: stretch;
+  gap: 22px;
+}
+
+#missions-list .asta-mission-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #343744;
+  border-radius: 15px;
+  background: #1a1c25;
+  box-shadow: 0 5px 18px rgba(0,0,0,.12);
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+#missions-list .asta-mission-card[hidden] {
+  display: none !important;
+}
+
+#missions-list .asta-mission-card:hover {
+  transform: translateY(-3px);
+  border-color: #66404e;
+  box-shadow: 0 15px 35px rgba(0,0,0,.24);
+}
+
+/* CAPTURAS */
+
+#missions-list .asta-mission-card > img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 11px;
+  background: #101117;
+  cursor: zoom-in;
+  transition: filter .2s ease;
+}
+
+#missions-list .asta-mission-card > img:hover {
+  filter: brightness(1.1);
+}
+
+/* TÍTULOS */
+
+#missions-list .asta-mission-card h3 {
+  margin: 18px 0 10px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+#missions-list .asta-mission-card p {
+  color: #a8adbd;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* STATUS */
+
+#missions-list .status-pill {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 100px;
+}
+
+/* LINKS */
+
+#missions-list .asta-mission-card a {
+  overflow-wrap: anywhere;
+}
+
+/* ÁREA DE AÇÕES */
+
+#missions-list .asta-mission-actions {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #343744;
+}
+
+#missions-list .project-actions-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#missions-list .project-actions-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #45404a;
+  border-radius: 10px;
+  background: #30212c;
+  color: #e6b5c2;
+  font-size: 23px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+#missions-list .project-actions-toggle:hover,
+#missions-list .project-actions-toggle[aria-expanded="true"] {
+  background: #e5254c;
+  border-color: #e5254c;
+  color: #fff;
+}
+
+/* MENU DE AÇÕES */
+
+#missions-list .project-actions-menu[hidden] {
+  display: none !important;
+}
+
+#missions-list .project-actions-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  z-index: 200;
+  width: 205px;
+  padding: 7px;
+  border: 1px solid #424552;
+  border-radius: 12px;
+  background: #292b36;
+  box-shadow: 0 18px 45px rgba(0,0,0,.55);
+}
+
+#missions-list .project-actions-menu button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #f0f0f5;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#missions-list .project-actions-menu button:hover {
+  background: #3b3e4a;
+}
+
+#missions-list .project-actions-menu .project-menu-danger {
+  color: #ff6481;
+}
+
+#missions-list .project-actions-menu .project-menu-danger:hover {
+  background: #532635;
+}
+
+/* DEIXA O MENU VISÍVEL ACIMA DOS OUTROS CARTÕES */
+
+#missions-list .asta-mission-card:has(
+  .project-actions-toggle[aria-expanded="true"]
+) {
+  z-index: 30;
+}
+
+/* ESTADOS VAZIOS */
+
+#view-missions .project-empty {
+  padding: 30px;
+  text-align: center;
+  color: #b3b6c3;
+  border: 1px dashed #424552;
+  border-radius: 12px;
+}
+
+#view-missions .project-empty[hidden] {
+  display: none !important;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+  #view-missions .project-toolbar {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  #view-missions .project-count {
+    grid-column: 1;
+  }
+
+  #missions-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  #missions-list .asta-mission-card {
+    padding: 16px;
+  }
+
+  #missions-list .asta-mission-card > img {
+    height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #missions-list .asta-mission-card,
+  #missions-list .asta-mission-card > img {
+    transition: none;
+  }
+}

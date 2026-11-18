@@ -1,0 +1,1003 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f1015">
+
+  <title>Touros Negros | ASTA WEB STUDIO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/admin.css?v=dashboard-7">
+  <link rel="stylesheet" href="css/admin-editor.css?v=executivo-1">
+  <link rel="stylesheet" href="css/admin-messages.css?v=premium-1">
+
+  <script src="js/admin.js?v=projetos-7" defer></script>
+  <script src="js/admin-messages.js?v=premium-1" defer></script>
+  <script src="js/settings.js" defer></script>
+  <script src="js/upload-mission-image.js" defer></script>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <main id="login-screen" class="login-screen">
+    <a class="back-home" href="index.html">← Voltar ao site</a>
+
+    <section class="login-card">
+      <img src="assets/touros-negros.png" alt="Touros Negros" class="login-logo">
+
+      <span class="eyebrow">ASTA WEB STUDIO</span>
+      <h1>Acesso ao QG</h1>
+      <p>Entre com suas credenciais administrativas.</p>
+
+      <form id="login-form">
+        <label for="username">Usuário</label>
+        <input
+          id="username"
+          autocomplete="username"
+          required
+          placeholder="Seu usuário"
+        >
+
+        <label for="password">Senha</label>
+
+        <div class="password-field">
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            placeholder="Sua senha"
+          >
+
+          <button
+            id="toggle-password"
+            type="button"
+            aria-label="Mostrar senha"
+          >◉</button>
+        </div>
+
+        <p id="login-message" role="status"></p>
+
+        <button class="primary-btn" type="submit">
+          Entrar no painel →
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- PAINEL ADMINISTRATIVO -->
+  <div id="admin-panel" class="admin-layout" hidden>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand">
+        <img src="assets/touros-negros.png" alt="Logo Touros Negros">
+
+        <div>
+          <strong>ASTA WEB STUDIO</strong>
+          <small>ADMIN DASHBOARD</small>
+        </div>
+      </div>
+
+      <span class="nav-caption">WORKSPACE</span>
+
+      <nav class="sidebar-nav">
+        <button
+          class="sidebar-link active"
+          data-view="dashboard"
+          type="button"
+        >
+          <span>▦</span> Touros Negros
+        </button>
+
+        <button
+          class="sidebar-link"
+          data-view="missions"
+          type="button"
+        >
+          <span>▣</span> Projetos
+        </button>
+
+        <button
+          class="sidebar-link"
+          data-view="new-mission"
+          type="button"
+        >
+          <span>＋</span> Novo projeto
+        </button>
+
+        <button
+          class="sidebar-link"
+          data-view="messages"
+          type="button"
+        >
+          <span>✉</span> Mensagens
+        </button>
+      </nav>
+
+      <span class="nav-caption second-caption">SISTEMA</span>
+
+      <nav class="sidebar-nav">
+        <button
+          class="sidebar-link"
+          data-view="settings"
+          type="button"
+        >
+          <span>⚙</span> Configurações
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a
+          href="index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ↗ Visualizar site
+        </a>
+
+        <button id="logout-button" type="button">
+          ⇥ Sair do painel
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="admin-main">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            id="sidebar-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >☰</button>
+
+          <div>
+            <strong id="topbar-title">Touros Negros</strong>
+            <span>Home / <b id="breadcrumb">Touros Negros</b></span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="workspace-label">ASTA WEB STUDIO</span>
+
+          <div class="admin-profile">
+            <img src="assets/touros-negros.png" alt="Perfil">
+
+            <div>
+              <strong id="profile-name">Administrador</strong>
+              <small>Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- DASHBOARD -->
+        <section id="view-dashboard" class="admin-view">
+
+          <div class="page-heading">
+            <div>
+              <h1>Touros Negros</h1>
+              <p>Acompanhe os indicadores e atividades do seu estúdio.</p>
+            </div>
+
+            <button
+              class="primary-btn"
+              data-go="new-mission"
+              type="button"
+            >
+              ＋ Novo projeto
+            </button>
+          </div>
+
+          <div class="stats-grid">
+
+            <article class="stat-card">
+              <div class="stat-icon red">▣</div>
+
+              <div>
+                <span>Total de projetos</span>
+                <strong id="stat-total">0</strong>
+                <small>Projetos cadastrados</small>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon green">✓</div>
+
+              <div>
+                <span>Publicados</span>
+                <strong id="stat-published">0</strong>
+                <small>Visíveis no portfólio</small>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon cyan">◷</div>
+
+              <div>
+                <span>Rascunhos</span>
+                <strong id="stat-drafts">0</strong>
+                <small>Em preparação</small>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon yellow">✉</div>
+
+              <div>
+                <span>Mensagens</span>
+                <strong id="stat-messages">0</strong>
+                <small>Contatos recebidos</small>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="charts-grid">
+
+            <article class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <h2>Visão geral dos projetos</h2>
+                  <p>Projetos cadastrados por mês</p>
+                </div>
+
+                <div class="chart-legend">
+                  <span class="legend-red">Publicados</span>
+                  <span class="legend-gray">Rascunhos</span>
+                </div>
+              </div>
+
+              <div class="line-chart-wrap">
+                <svg
+                  id="projects-line-chart"
+                  viewBox="0 0 700 280"
+                  role="img"
+                  aria-label="Gráfico de projetos por mês"
+                ></svg>
+              </div>
+
+              <p id="chart-note" class="chart-note"></p>
+            </article>
+
+            <article class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <h2>Status dos projetos</h2>
+                  <p>Distribuição atual</p>
+                </div>
+              </div>
+
+              <div class="donut-layout">
+
+                <div class="donut" id="projects-donut">
+                  <div class="donut-center">
+                    <strong id="donut-total">0</strong>
+                    <span>Projetos</span>
+                  </div>
+                </div>
+
+                <div class="donut-legend">
+                  <div>
+                    <span><i class="dot red-dot"></i> Publicados</span>
+                    <strong id="donut-published">0</strong>
+                  </div>
+
+                  <div>
+                    <span><i class="dot gray-dot"></i> Rascunhos</span>
+                    <strong id="donut-drafts">0</strong>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+
+          </div>
+
+          <div class="bottom-grid">
+
+            <article class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <h2>Projetos recentes</h2>
+                  <p>Últimos projetos do portfólio</p>
+                </div>
+
+                <button
+                  class="subtle-btn"
+                  type="button"
+                  data-go="missions"
+                >
+                  Ver todos
+                </button>
+              </div>
+
+              <div class="table-scroll">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>PROJETO</th>
+                      <th>CATEGORIA</th>
+                      <th>STATUS</th>
+                      <th>DATA</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="recent-projects-table">
+                    <tr>
+                      <td colspan="4">Carregando...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="recent-missions" hidden></div>
+            </article>
+
+            <article class="panel-card">
+              <div class="panel-heading">
+                <div>
+                  <h2>Atividade recente</h2>
+                  <p>Resumo do portfólio</p>
+                </div>
+              </div>
+
+              <div id="activity-list" class="activity-list"></div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- PROJETOS -->
+        <section id="view-missions" class="admin-view" hidden>
+
+          <div class="page-heading">
+            <div>
+              <h1>Projetos</h1>
+              <p>Gerencie as missões cadastradas.</p>
+            </div>
+
+            <button
+              class="primary-btn"
+              data-go="new-mission"
+              type="button"
+            >
+              ＋ Novo projeto
+            </button>
+          </div>
+
+          <div class="panel-card">
+            <div id="missions-list"></div>
+          </div>
+        </section>
+
+        <!-- EDITOR EXECUTIVO -->
+        <section id="view-new-mission" class="admin-view" hidden>
+
+          <div class="executive-heading">
+            <div>
+              <span class="executive-breadcrumb">
+                PORTFÓLIO / NOVO PROJETO
+              </span>
+
+              <h1>Criar novo projeto</h1>
+
+              <p>
+                Preencha os detalhes para adicionar ao seu portfólio.
+              </p>
+            </div>
+
+            <span class="executive-heading-status">
+              EDITOR DE PROJETOS
+            </span>
+          </div>
+
+          <!-- IMPORTAÇÃO AUTOMÁTICA -->
+          <div class="executive-import">
+
+            <div class="executive-import-heading">
+              <div class="executive-section-icon">↗</div>
+
+              <div>
+                <h2>Importação automática</h2>
+                <p>
+                  Cadastre um site público usando apenas o endereço HTTPS.
+                </p>
+              </div>
+
+              <span class="executive-optional">OPCIONAL</span>
+            </div>
+
+            <form id="quick-project-form" class="executive-quick-form">
+
+              <div class="executive-quick-input">
+                <label for="quick-project-url">Endereço do site</label>
+
+                <input
+                  id="quick-project-url"
+                  type="url"
+                  required
+                  placeholder="https://meusite.com.br"
+                  autocomplete="url"
+                >
+              </div>
+
+              <button
+                type="submit"
+                class="primary-btn executive-import-button"
+              >
+                Importar projeto ↗
+              </button>
+            </form>
+
+            <p
+              id="quick-project-feedback"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <!-- FORMULÁRIO PRINCIPAL -->
+          <form id="mission-form" class="executive-form">
+
+            <div class="executive-columns">
+
+              <!-- COLUNA ESQUERDA -->
+              <div class="executive-left">
+
+                <section class="executive-section">
+
+                  <div class="executive-section-heading">
+                    <span class="executive-heading-dot"></span>
+
+                    <div>
+                      <h2>Detalhes do projeto</h2>
+                      <p>
+                        Informações que serão exibidas no portfólio.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="executive-fields">
+
+                    <div class="form-group">
+                      <label for="mission-title">
+                        Nome do projeto *
+                      </label>
+
+                      <input
+                        id="mission-title"
+                        type="text"
+                        required
+                        placeholder="Ex.: Black Crown Barber"
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="mission-category">
+                        Categoria *
+                      </label>
+
+                      <select id="mission-category" required>
+                        <option value="">
+                          Selecione a categoria
+                        </option>
+                        <option value="web">Website</option>
+                        <option value="sistemas">Sistema</option>
+                        <option value="gamer">Gamer</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="mission-description">
+                        Descrição *
+                      </label>
+
+                      <textarea
+                        id="mission-description"
+                        rows="5"
+                        required
+                        placeholder="Descreva o projeto, suas funcionalidades e objetivos..."
+                      ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="mission-technologies">
+                        Tecnologias utilizadas
+                      </label>
+
+                      <input
+                        id="mission-technologies"
+                        type="text"
+                        placeholder="HTML, CSS, JavaScript, Node.js..."
+                      >
+                    </div>
+
+                  </div>
+                </section>
+
+                <section class="executive-section executive-links-section">
+
+                  <div class="executive-section-heading">
+                    <span class="executive-heading-dot"></span>
+
+                    <div>
+                      <h2>Links do projeto</h2>
+                      <p>
+                        Adicione o site publicado e o repositório.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="executive-fields">
+
+                    <div class="form-group">
+                      <label for="mission-website">
+                        URL do site
+                      </label>
+
+                      <input
+                        id="mission-website"
+                        type="url"
+                        placeholder="https://meusite.com.br"
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="mission-github">
+                        Repositório GitHub
+                      </label>
+
+                      <input
+                        id="mission-github"
+                        type="url"
+                        placeholder="https://github.com/usuario/repositorio"
+                      >
+                    </div>
+
+                  </div>
+                </section>
+
+              </div>
+
+              <!-- COLUNA DIREITA -->
+              <aside class="executive-right">
+
+                <section class="executive-media">
+
+                  <div class="executive-section-heading">
+                    <span class="executive-heading-dot"></span>
+
+                    <div>
+                      <h2>Apresentação</h2>
+                      <p>Imagem principal do projeto.</p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="executive-preview"
+                    id="executive-preview"
+                  >
+                    <img
+                      id="executive-preview-image"
+                      alt="Pré-visualização da imagem do projeto"
+                      hidden
+                    >
+
+                    <div
+                      id="executive-preview-placeholder"
+                      class="executive-preview-placeholder"
+                    >
+                      <span class="executive-preview-symbol">▧</span>
+
+                      <strong>Imagem do projeto</strong>
+
+                      <small>
+                        A capa aparecerá aqui quando for selecionada.
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="form-group executive-image-field">
+                    <label for="mission-image">
+                      URL da imagem
+                    </label>
+
+                    <input
+                      id="mission-image"
+                      type="text"
+                      placeholder="URL ou caminho da imagem"
+                    >
+
+                    <small class="executive-field-hint">
+                      Você também pode usar o upload de imagem abaixo.
+                    </small>
+                  </div>
+
+                </section>
+
+                <section class="executive-publishing">
+
+                  <div class="executive-section-heading">
+                    <span class="executive-heading-dot"></span>
+
+                    <div>
+                      <h2>Publicação</h2>
+                      <p>
+                        Controle a visibilidade do projeto.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mission-status">
+                      Status do projeto
+                    </label>
+
+                    <select id="mission-status">
+                      <option value="draft">Rascunho</option>
+                      <option value="published">Publicado</option>
+                    </select>
+                  </div>
+
+                  <p class="executive-status-note">
+                    Projetos publicados poderão aparecer no portfólio público.
+                  </p>
+
+                </section>
+
+              </aside>
+            </div>
+
+            <!-- RODAPÉ DO FORMULÁRIO -->
+            <div class="form-actions executive-actions">
+              <div>
+                <strong>Pronto para salvar?</strong>
+                <p>
+                  Confira as informações antes de continuar.
+                </p>
+              </div>
+
+              <button
+                class="primary-btn executive-save"
+                type="submit"
+              >
+                Salvar projeto →
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- CENTRAL DE ATENDIMENTO PREMIUM -->
+        <section id="view-messages" class="admin-view" hidden>
+
+          <div class="page-heading">
+            <div>
+              <h1>Mensagens</h1>
+              <p>Contatos recebidos pelo website.</p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div id="messages-list">
+              Carregando mensagens...
+            </div>
+          </div>
+
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section id="view-settings" class="admin-view" hidden>
+
+          <div class="page-heading">
+            <div>
+              <h1>Configurações</h1>
+              <p>Gerencie sua conta e seu estúdio.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+
+            <!-- PERFIL -->
+            <div class="panel-card">
+              <h2>Meu perfil</h2>
+
+              <form
+                id="settings-profile-form"
+                class="settings-form"
+              >
+                <div class="settings-avatar-row">
+                  <img
+                    id="settings-avatar-preview"
+                    src="assets/touros-negros.png"
+                    alt="Avatar"
+                  >
+
+                  <div>
+                    <label
+                      class="subtle-btn"
+                      for="settings-avatar-file"
+                    >
+                      Selecionar foto
+                    </label>
+
+                    <input
+                      id="settings-avatar-file"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                      hidden
+                    >
+                  </div>
+                </div>
+
+                <label for="settings-username">
+                  Usuário
+                </label>
+
+                <input
+                  id="settings-username"
+                  required
+                >
+
+                <label for="settings-display-name">
+                  Nome exibido
+                </label>
+
+                <input id="settings-display-name">
+
+                <button class="primary-btn" type="submit">
+                  Salvar perfil
+                </button>
+
+                <p
+                  id="settings-profile-feedback"
+                  role="status"
+                ></p>
+              </form>
+            </div>
+
+            <!-- SEGURANÇA -->
+            <div class="panel-card">
+              <h2>Segurança</h2>
+
+              <form
+                id="settings-password-form"
+                class="settings-form"
+              >
+                <label for="settings-current-password">
+                  Senha atual
+                </label>
+
+                <input
+                  id="settings-current-password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                >
+
+                <label for="settings-new-password">
+                  Nova senha
+                </label>
+
+                <input
+                  id="settings-new-password"
+                  type="password"
+                  minlength="12"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <label for="settings-confirm-password">
+                  Confirmar senha
+                </label>
+
+                <input
+                  id="settings-confirm-password"
+                  type="password"
+                  minlength="12"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <button class="primary-btn" type="submit">
+                  Alterar senha
+                </button>
+
+                <p
+                  id="settings-password-feedback"
+                  role="status"
+                ></p>
+              </form>
+            </div>
+
+            <!-- INFORMAÇÕES COMERCIAIS -->
+            <div class="panel-card">
+              <h2>Informações comerciais</h2>
+
+              <form
+                id="settings-site-form"
+                class="settings-form"
+              >
+                <label for="settings-site-name">
+                  Estúdio
+                </label>
+
+                <input
+                  id="settings-site-name"
+                  required
+                >
+
+                <label for="settings-email">
+                  E-mail
+                </label>
+
+                <input
+                  id="settings-email"
+                  type="email"
+                >
+
+                <label for="settings-whatsapp">
+                  WhatsApp
+                </label>
+
+                <input
+                  id="settings-whatsapp"
+                  type="tel"
+                >
+
+                <label for="settings-instagram">
+                  Instagram
+                </label>
+
+                <input
+                  id="settings-instagram"
+                  type="url"
+                >
+
+                <label for="settings-github">
+                  GitHub
+                </label>
+
+                <input
+                  id="settings-github"
+                  type="url"
+                >
+
+                <button class="primary-btn" type="submit">
+                  Salvar informações
+                </button>
+
+                <p
+                  id="settings-site-feedback"
+                  role="status"
+                ></p>
+              </form>
+            </div>
+
+            <!-- PREFERÊNCIAS -->
+            <div class="panel-card">
+              <h2>Preferências</h2>
+
+              <form
+                id="settings-preferences-form"
+                class="settings-form"
+              >
+                <label class="check-label">
+                  <input
+                    id="settings-notifications"
+                    type="checkbox"
+                  >
+                  Alertar sobre mensagens
+                </label>
+
+                <label for="settings-accent">
+                  Cor de destaque
+                </label>
+
+                <select id="settings-accent">
+                  <option value="red">Vermelho</option>
+                  <option value="purple">Roxo</option>
+                </select>
+
+                <button class="primary-btn" type="submit">
+                  Salvar preferências
+                </button>
+
+                <p
+                  id="settings-preferences-feedback"
+                  role="status"
+                ></p>
+              </form>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÉ-VISUALIZAÇÃO DE IMAGEM -->
+  <script>
+    (() => {
+      const imageInput = document.getElementById("mission-image");
+      const preview = document.getElementById("executive-preview-image");
+      const placeholder = document.getElementById(
+        "executive-preview-placeholder"
+      );
+
+      if (!imageInput || !preview || !placeholder) {
+        return;
+      }
+
+      function updatePreview() {
+        const value = imageInput.value.trim();
+
+        if (!value) {
+          preview.hidden = true;
+          preview.removeAttribute("src");
+          placeholder.hidden = false;
+          return;
+        }
+
+        const validPath =
+          value.startsWith("/") ||
+          value.startsWith("./") ||
+          /^https?:\/\//i.test(value);
+
+        if (!validPath) {
+          preview.hidden = true;
+          placeholder.hidden = false;
+          return;
+        }
+
+        preview.hidden = false;
+        placeholder.hidden = true;
+
+        if (preview.getAttribute("src") !== value) {
+          preview.src = value;
+        }
+      }
+
+      preview.addEventListener("error", () => {
+        preview.hidden = true;
+        placeholder.hidden = false;
+      });
+
+      imageInput.addEventListener("input", updatePreview);
+      imageInput.addEventListener("change", updatePreview);
+
+      document.querySelectorAll(
+        '[data-view="new-mission"],[data-go="new-mission"]'
+      ).forEach(button => {
+        button.addEventListener("click", () => {
+          requestAnimationFrame(updatePreview);
+        });
+      });
+
+      const observer = new MutationObserver(updatePreview);
+
+      observer.observe(imageInput, {
+        attributes: true,
+        attributeFilter: ["value"]
+      });
+
+      updatePreview();
+    })();
+  </script>
+
+</body>
+</html>

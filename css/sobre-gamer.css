@@ -1,0 +1,377 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   SEÇÃO SOBRE - CINEMATIC GAMER
+========================================== */
+
+.about-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 110px 0;
+  border-top: 1px solid rgba(255, 30, 65, 0.3);
+
+  background:
+    radial-gradient(
+      ellipse at 15% 50%,
+      rgba(195, 0, 35, 0.16),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 10%,
+      rgba(110, 0, 25, 0.13),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #090609 0%,
+      #11090e 45%,
+      #060507 100%
+    );
+}
+
+/* LINHAS TECNOLÓGICAS */
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 85px,
+      rgba(255, 35, 70, 0.035) 86px,
+      transparent 87px
+    );
+
+  mask-image: linear-gradient(
+    90deg,
+    black,
+    transparent 85%
+  );
+}
+
+/* LUZ DE FUNDO */
+
+.about-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 420px;
+  height: 420px;
+  top: 50%;
+  left: -230px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgba(255, 0, 40, 0.17);
+  filter: blur(95px);
+  pointer-events: none;
+}
+
+/* ESTRUTURA */
+
+.about-section .about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(35px, 6vw, 90px);
+}
+
+/* BLOCO DO TÍTULO */
+
+.about-section .about-grid > div:first-child {
+  position: relative;
+  min-width: 0;
+  padding: 40px 0 40px 28px;
+  border-left: 3px solid #f0002c;
+}
+
+/* MARCA SUPERIOR */
+
+.about-section .about-grid > div:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 85px;
+  height: 3px;
+
+  background: #ff2c50;
+  box-shadow: 0 0 18px rgba(255, 0, 45, 0.75);
+}
+
+/* MARCA INFERIOR */
+
+.about-section .about-grid > div:first-child::after {
+  content: "ASTA // 001";
+  display: block;
+  margin-top: 28px;
+
+  color: rgba(255, 90, 115, 0.65);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+/* ETIQUETA */
+
+.about-section .section-label {
+  margin-bottom: 22px;
+  color: #ff4566;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 0 0 14px rgba(255, 0, 45, 0.4);
+}
+
+/* TÍTULO CINEMATOGRÁFICO */
+
+.about-section .section-title {
+  max-width: 650px;
+  color: #f5f3f4;
+  font-family: "Rajdhani", sans-serif;
+  font-size: clamp(48px, 5.5vw, 83px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-wrap: balance;
+
+  text-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.55);
+}
+
+.about-section .section-title span {
+  display: block;
+  margin-top: 8px;
+  color: #ff173c;
+
+  text-shadow:
+    0 0 18px rgba(255, 0, 45, 0.4),
+    0 0 45px rgba(255, 0, 45, 0.15);
+}
+
+/* PAINEL DE DESCRIÇÃO */
+
+.about-section .about-description {
+  position: relative;
+  min-width: 0;
+  padding: 38px;
+
+  border: 1px solid rgba(255, 35, 65, 0.38);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(45, 13, 22, 0.75),
+      rgba(10, 8, 13, 0.95) 60%
+    );
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* DETALHE NO CANTO DO PAINEL */
+
+.about-section .about-description::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 65px;
+  height: 65px;
+
+  border-top: 3px solid #ff2d50;
+  border-right: 3px solid #ff2d50;
+  border-radius: 0 16px 0 0;
+
+  filter: drop-shadow(
+    0 0 8px rgba(255, 0, 45, 0.4)
+  );
+
+  pointer-events: none;
+}
+
+/* IDENTIFICADOR TECNOLÓGICO */
+
+.about-section .about-description::after {
+  content: "ABOUT / ASTA WEB STUDIO";
+  display: block;
+  margin-top: 28px;
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: #8c727b;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* PARÁGRAFOS */
+
+.about-section .about-description p {
+  margin-bottom: 20px;
+  color: #d0c6cc;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.about-section .about-description p:first-child {
+  color: #f3e9ed;
+  font-weight: 500;
+}
+
+/* LINK DE CONTATO */
+
+.about-section .text-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 10px;
+  padding: 13px 18px;
+
+  border: 1px solid rgba(255, 35, 65, 0.65);
+  border-radius: 8px;
+
+  background: rgba(255, 0, 40, 0.08);
+  color: #fff;
+
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  box-shadow: 0 0 15px rgba(255, 0, 40, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* INTERAÇÕES */
+
+@media (hover: hover) and (pointer: fine) {
+  .about-section .about-description:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 45, 75, 0.7);
+
+    box-shadow:
+      0 25px 65px rgba(0, 0, 0, 0.4),
+      0 0 35px rgba(255, 0, 45, 0.12);
+  }
+
+  .about-section .text-link:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 0, 40, 0.2);
+    border-color: #ff3658;
+
+    box-shadow:
+      0 0 20px rgba(255, 0, 45, 0.2);
+  }
+}
+
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 900px) {
+  .about-section {
+    padding: 85px 0;
+  }
+
+  .about-section .about-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .about-section .section-title {
+    max-width: 750px;
+    font-size: clamp(52px, 8vw, 75px);
+  }
+
+  .about-section .about-grid > div:first-child {
+    padding: 25px 0 25px 24px;
+  }
+
+  .about-section .about-description {
+    padding: 32px;
+  }
+}
+
+/* ==========================================
+   CELULARES
+========================================== */
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 70px 0;
+  }
+
+  .about-section .about-grid {
+    gap: 25px;
+  }
+
+  .about-section .about-grid > div:first-child {
+    padding: 22px 0 22px 17px;
+  }
+
+  .about-section .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .about-section .section-title {
+    font-size: clamp(42px, 10vw, 60px);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .about-section .about-description {
+    padding: 26px 22px;
+    border-radius: 12px;
+  }
+
+  .about-section .about-description p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .about-section .text-link {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-section .about-description,
+  .about-section .text-link {
+    transition: none !important;
+  }
+}
+
+/* ==========================================
+   FIM - SOBRE GAMER
+========================================== */

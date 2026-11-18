@@ -1,0 +1,169 @@
+
+/* ASTA WEB STUDIO — PROJECT CARDS */
+
+#missions-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, 310px), 1fr)
+  );
+  gap: 22px;
+}
+
+#view-missions > .panel-card {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.asta-mission-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  background: #1c1e27;
+  border: 1px solid #30323e;
+  border-radius: 16px;
+  overflow: hidden;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.asta-mission-card:hover {
+  transform: translateY(-5px);
+  border-color: #e5254c;
+  box-shadow: 0 18px 45px #0005;
+}
+
+.asta-mission-card > img {
+  width: 100%;
+  height: 210px;
+  max-height: none !important;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  background: #111218;
+  margin-bottom: 4px !important;
+}
+
+.asta-mission-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f7f7fa;
+  overflow-wrap: anywhere;
+}
+
+.asta-mission-card > p {
+  color: #a4a8b6;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.asta-mission-card > a {
+  color: #ff5577;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.asta-mission-card > a:hover {
+  color: #ffffff;
+}
+
+.asta-mission-card .status-pill {
+  align-self: flex-start;
+}
+
+.asta-mission-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.asta-mission-actions button {
+  min-width: 0;
+  padding: 10px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+.asta-mission-actions button:hover {
+  filter: brightness(1.18);
+}
+
+.project-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.project-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  border: 1px solid #353744;
+  background: #1c1e27;
+  color: #ffffff;
+  outline: none;
+  font: inherit;
+}
+
+.project-search:focus {
+  border-color: #e5254c;
+}
+
+.project-filter {
+  padding: 13px;
+  border: 1px solid #353744;
+  border-radius: 10px;
+  background: #1c1e27;
+  color: #ffffff;
+  font: inherit;
+}
+
+.project-count {
+  width: 100%;
+  color: #a4a8b6;
+  font-size: 12px;
+}
+
+.project-empty {
+  grid-column: 1 / -1;
+  padding: 35px;
+  text-align: center;
+  color: #a4a8b6;
+}
+
+@media (max-width: 600px) {
+  #missions-list {
+    grid-template-columns: 1fr;
+  }
+
+  .project-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-search,
+  .project-filter {
+    width: 100%;
+  }
+
+  .asta-mission-card > img {
+    height: 200px;
+  }
+}

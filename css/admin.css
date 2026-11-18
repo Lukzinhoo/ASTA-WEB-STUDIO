@@ -1,0 +1,1396 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   TOUROS NEGROS — ADMIN DASHBOARD 2.0
+   ========================================== */
+
+:root {
+  --bg: #0f1015;
+  --sidebar: #121319;
+  --card: #1d2029;
+  --card-hover: #242732;
+  --border: #2c2f39;
+  --text: #f5f6fa;
+  --muted: #9195a4;
+  --red: #ff174c;
+  --green: #25c88a;
+  --cyan: #17bde5;
+  --yellow: #f4b52d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px Inter, Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--red);
+  color: white;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+/* ==========================================
+   MENU LATERAL
+   ========================================== */
+
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 23px 13px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 9px 34px;
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #27151d;
+}
+
+.brand strong {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.brand small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+.nav-caption {
+  padding: 12px 13px;
+  color: #747988;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+}
+
+.second-caption {
+  margin-top: 25px;
+}
+
+.sidebar-nav {
+  display: grid;
+  gap: 5px;
+}
+
+.sidebar-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border: 0;
+  border-radius: 8px;
+  padding: 13px;
+  color: #a6a9b6;
+  background: transparent;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background .2s, color .2s;
+}
+
+.sidebar-link > span {
+  font-size: 19px;
+  width: 22px;
+  text-align: center;
+}
+
+.sidebar-link:hover {
+  background: #22242d;
+  color: white;
+}
+
+.sidebar-link.active {
+  background: #30202b;
+  color: #fff;
+  border-left: 3px solid var(--red);
+}
+
+.sidebar-link.active > span {
+  color: var(--red);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+  padding: 15px 7px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-footer a,
+.sidebar-footer button {
+  padding: 12px;
+  border: 1px solid var(--border);
+  background: #1a1c24;
+  color: #c4c7d0;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 11px;
+}
+
+.sidebar-footer a:hover,
+.sidebar-footer button:hover {
+  border-color: var(--red);
+  color: white;
+}
+
+/* ==========================================
+   BARRA SUPERIOR
+   ========================================== */
+
+.topbar {
+  height: 68px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 28px;
+  background: #111218;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-left strong {
+  font-size: 16px;
+}
+
+.topbar-left span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.topbar-left span b {
+  color: var(--red);
+}
+
+.workspace-label {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.admin-profile img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--red);
+}
+
+.admin-profile strong {
+  font-size: 11px;
+}
+
+.admin-profile small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+#sidebar-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: white;
+  border-radius: 7px;
+  padding: 8px 11px;
+}
+
+/* ==========================================
+   CONTEÚDO
+   ========================================== */
+
+.admin-content {
+  padding: 25px 28px;
+  max-width: 1750px;
+  margin: auto;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.page-heading h1 {
+  font-size: 23px;
+  margin: 0 0 7px;
+  font-weight: 750;
+}
+
+.page-heading p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 11px;
+}
+
+.primary-btn {
+  border: 0;
+  background: var(--red);
+  color: white;
+  border-radius: 7px;
+  padding: 12px 17px;
+  font-size: 11px;
+  font-weight: 750;
+  transition: background .2s, transform .2s;
+}
+
+.primary-btn:hover {
+  background: #ed003a;
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   ESTATÍSTICAS
+   ========================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 20px;
+  min-height: 115px;
+  transition: border-color .2s, transform .2s;
+}
+
+.stat-card:hover {
+  border-color: #49404a;
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 37px;
+  height: 37px;
+  border-radius: 8px;
+  font-size: 19px;
+}
+
+.stat-icon.red {
+  background: #381b2a;
+  color: var(--red);
+}
+
+.stat-icon.green {
+  background: #19372f;
+  color: var(--green);
+}
+
+.stat-icon.cyan {
+  background: #183542;
+  color: var(--cyan);
+}
+
+.stat-icon.yellow {
+  background: #39301c;
+  color: var(--yellow);
+}
+
+.stat-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 27px;
+  margin: 8px 0 7px;
+  line-height: 1;
+}
+
+.stat-card small {
+  color: var(--green);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   GRÁFICOS
+   ========================================== */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.85fr)
+    minmax(270px, 1fr);
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+.panel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 19px;
+  min-width: 0;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+.panel-heading h2,
+.panel-card > h2 {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 750;
+}
+
+.panel-heading p {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 7px 0 0;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #bec1cc;
+  font-size: 10px;
+}
+
+.chart-legend span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.legend-red::before {
+  background: var(--red);
+}
+
+.legend-gray::before {
+  background: #969aa6;
+}
+
+.line-chart-wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+.line-chart-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 230px;
+}
+
+.chart-note {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+/* ==========================================
+   GRÁFICO CIRCULAR
+   ========================================== */
+
+.donut-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 12px 0;
+}
+
+.donut {
+  width: min(195px, 75%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(
+    var(--red) 0% 0%,
+    #383c48 0% 100%
+  );
+  position: relative;
+}
+
+.donut::before {
+  content: "";
+  position: absolute;
+  inset: 29px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.donut-center {
+  z-index: 1;
+  text-align: center;
+}
+
+.donut-center strong {
+  display: block;
+  font-size: 31px;
+}
+
+.donut-center span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.donut-legend {
+  width: 100%;
+  max-width: 270px;
+  display: grid;
+  gap: 12px;
+}
+
+.donut-legend > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.donut-legend > div > span {
+  color: var(--muted);
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.red-dot {
+  background: var(--red);
+}
+
+.gray-dot {
+  background: #626977;
+}
+
+/* ==========================================
+   TABELAS E ATIVIDADES
+   ========================================== */
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.85fr)
+    minmax(270px, 1fr);
+  gap: 13px;
+}
+
+.subtle-btn {
+  background: #2a2d37;
+  border: 1px solid #373b46;
+  color: #e5e5eb;
+  padding: 8px 11px;
+  border-radius: 6px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.subtle-btn:hover {
+  background: #353844;
+  border-color: var(--red);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 11px;
+}
+
+.data-table th {
+  background: #252832;
+  color: #9297a7;
+  font-size: 9px;
+  letter-spacing: .4px;
+  padding: 13px 11px;
+}
+
+.data-table td {
+  padding: 15px 11px;
+  border-bottom: 1px solid #30333d;
+  color: #d4d6de;
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.table-project {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-project-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #3a1d2c;
+  color: var(--red);
+  font-weight: 800;
+}
+
+.table-project strong {
+  display: block;
+  color: white;
+}
+
+.table-project small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.status-pill {
+  display: inline-flex;
+  border-radius: 20px;
+  padding: 6px 9px;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.status-pill.published {
+  background: #18392f;
+  color: #48d6a0;
+}
+
+.status-pill.draft {
+  background: #3c321e;
+  color: #edbb53;
+}
+
+.activity-list {
+  display: grid;
+  gap: 0;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px 0;
+  border-bottom: 1px solid #30333d;
+}
+
+.activity-item:last-child {
+  border: 0;
+}
+
+.activity-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 31px;
+  height: 31px;
+  background: #30202c;
+  border-radius: 50%;
+  color: var(--red);
+}
+
+.activity-item strong {
+  display: block;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.activity-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 4px;
+}
+
+/* ==========================================
+   FORMULÁRIOS
+   ========================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label,
+.settings-form label {
+  font-size: 11px;
+  color: #d9dbe2;
+  font-weight: 650;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  background: #13151c;
+  border: 1px solid #383c48;
+  color: #f5f6fa;
+  border-radius: 7px;
+  padding: 12px;
+  outline: none;
+  transition: border-color .2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--red);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.mission-form {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.full-width,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================
+   CONFIGURAÇÕES
+   ========================================== */
+
+.settings-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.settings-form .primary-btn {
+  justify-self: start;
+  margin-top: 5px;
+}
+
+.settings-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.settings-avatar-row img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.check-label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.check-label input {
+  width: auto;
+  accent-color: var(--red);
+}
+
+/* ==========================================
+   PROJETOS
+   ========================================== */
+
+#missions-list .asta-mission-card {
+  padding: 20px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #171920;
+}
+
+#missions-list .asta-mission-card h3 {
+  margin: 0 0 8px;
+}
+
+#missions-list .asta-mission-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.asta-mission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.asta-mission-actions button,
+.small-red-button {
+  border: 1px solid #49303b;
+  background: #321c28;
+  color: #ff91a9;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  transition:
+    background .2s,
+    border-color .2s,
+    color .2s;
+}
+
+.asta-mission-actions button:hover,
+.small-red-button:hover {
+  background: #472334;
+  border-color: var(--red);
+  color: white;
+}
+
+/* ==========================================
+   MENSAGENS — VISUAL PROFISSIONAL
+   ========================================== */
+
+#view-messages .page-heading {
+  margin-bottom: 24px;
+}
+
+#view-messages .page-heading h1 {
+  font-size: 26px;
+  letter-spacing: -.5px;
+}
+
+#view-messages > .panel-card {
+  background: #181a22;
+  border: 1px solid #30333e;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+#messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* BOTÃO ATUALIZAR */
+
+#messages-list > .small-red-button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #30202b;
+  border: 1px solid #513142;
+  color: #ff9bb1;
+  font-weight: 700;
+}
+
+#messages-list > .small-red-button:hover {
+  background: #442334;
+  border-color: var(--red);
+  color: white;
+}
+
+/* CARTÕES */
+
+.message-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 23px 25px;
+  border: 1px solid #30343f;
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    #1b1d26 0%,
+    #15171e 100%
+  );
+  transition:
+    border-color .2s,
+    box-shadow .2s,
+    transform .2s;
+}
+
+.message-card:hover {
+  border-color: #51404b;
+  box-shadow: 0 10px 28px #00000025;
+}
+
+/* IDENTIFICAÇÃO DO REMETENTE */
+
+.message-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .1px;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.message-card h3::before {
+  content: "✉";
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #35202c;
+  color: var(--red);
+  font-size: 16px;
+}
+
+/* ASSUNTO, STATUS E DATA */
+
+.message-card small {
+  display: block;
+  color: #9da2b1;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.message-card small:first-of-type {
+  color: #c7cad5;
+  font-weight: 600;
+}
+
+/* E-MAIL E TEXTO */
+
+.message-card p {
+  margin: 0;
+  color: #cbd0dc;
+  font-size: 12px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message-card p:has(a[href^="mailto:"]) {
+  padding: 10px 13px;
+  border-radius: 8px;
+  background: #11131a;
+  border: 1px solid #2a2d37;
+}
+
+.message-card a[href^="mailto:"] {
+  color: #ff7998;
+  font-size: 11px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.message-card a[href^="mailto:"]:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* MENSAGENS NÃO LIDAS */
+
+.message-card[style*="border-left"] {
+  background: linear-gradient(
+    145deg,
+    #251b26,
+    #17171f
+  );
+}
+
+.message-card[style*="border-left"] h3::before {
+  background: #512336;
+  box-shadow: 0 0 15px #ff174c20;
+}
+
+/* AÇÕES */
+
+#messages-list .message-card .asta-mission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 17px;
+  border-top: 1px solid #30333e;
+}
+
+#messages-list .message-card .asta-mission-actions button,
+#messages-list .message-card .asta-mission-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 37px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* MARCAR COMO LIDA */
+
+#messages-list .message-card .asta-mission-actions button:first-child {
+  background: #242832;
+  border: 1px solid #3a3f4c;
+  color: #e0e3ed;
+}
+
+#messages-list .message-card .asta-mission-actions button:first-child:hover {
+  background: #313743;
+  border-color: #747c8d;
+}
+
+/* EXCLUIR */
+
+#messages-list .message-card .asta-mission-actions button:nth-child(2) {
+  background: #351c28;
+  border: 1px solid #593043;
+  color: #ff9cb3;
+}
+
+#messages-list .message-card .asta-mission-actions button:nth-child(2):hover {
+  background: #572338;
+  border-color: var(--red);
+  color: white;
+}
+
+/* RESPONDER NO WHATSAPP */
+
+#messages-list .message-card .asta-mission-actions a[href*="wa.me"] {
+  background: #17382c;
+  border: 1px solid #286e51;
+  color: #5de1a5;
+}
+
+#messages-list .message-card .asta-mission-actions a[href*="wa.me"]:hover {
+  background: #20513e;
+  border-color: var(--green);
+  color: white;
+}
+
+/* ==========================================
+   MENSAGENS RECENTES NO DASHBOARD
+   ========================================== */
+
+#recent-messages-dashboard {
+  min-height: 80px;
+}
+
+#recent-messages-dashboard .activity-item {
+  padding: 15px 0;
+}
+
+#recent-messages-dashboard .activity-icon {
+  background: #38202d;
+  color: var(--red);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+#recent-messages-dashboard .activity-item strong {
+  font-size: 12px;
+}
+
+#recent-messages-dashboard .activity-item small {
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   LOGIN
+   ========================================== */
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 70px 20px;
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      #361b2a,
+      transparent 45%
+    ),
+    var(--bg);
+}
+
+.back-home {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  color: var(--muted);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 35px;
+}
+
+.login-logo {
+  display: block;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin: 0 auto 20px;
+}
+
+.eyebrow {
+  display: block;
+  text-align: center;
+  color: var(--red);
+  letter-spacing: 2px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.login-card h1 {
+  text-align: center;
+  font-size: 25px;
+  margin: 14px 0;
+}
+
+.login-card > p {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.login-card form {
+  display: grid;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.login-card label {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 50px;
+}
+
+.password-field button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  width: 42px;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+}
+
+#login-message {
+  min-height: 15px;
+  color: #ff7897;
+  font-size: 11px;
+}
+
+/* ==========================================
+   TEMA ROXO
+   ========================================== */
+
+body.settings-purple {
+  --red: #a06bff;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1150px) {
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .charts-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 235px;
+    transform: translateX(-100%);
+    transition: transform .2s;
+    box-shadow: 15px 0 40px #00000030;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  #sidebar-toggle {
+    display: block;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-content {
+    padding: 18px 13px;
+  }
+
+  .topbar {
+    padding: 0 13px;
+  }
+
+  .workspace-label {
+    display: none;
+  }
+
+  .stats-grid {
+    gap: 9px;
+  }
+
+  .stat-card {
+    padding: 13px;
+    gap: 9px;
+    min-height: 105px;
+  }
+
+  .stat-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .stat-card strong {
+    font-size: 23px;
+  }
+
+  .panel-card {
+    padding: 14px;
+  }
+
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mission-form {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-right .admin-profile > div {
+    display: none;
+  }
+
+  /* MENSAGENS NO CELULAR */
+
+  #view-messages > .panel-card {
+    padding: 12px;
+  }
+
+  .message-card {
+    padding: 17px 15px;
+    gap: 11px;
+  }
+
+  .message-card h3 {
+    font-size: 13px;
+  }
+
+  .message-card h3::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  #messages-list .message-card .asta-mission-actions {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  #messages-list .message-card .asta-mission-actions button,
+  #messages-list .message-card .asta-mission-actions a {
+    width: 100%;
+    min-width: 0;
+    font-size: 10px;
+    padding: 10px 8px;
+  }
+
+  #messages-list .message-card .asta-mission-actions a[href*="wa.me"] {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 370px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #messages-list .message-card .asta-mission-actions {
+    grid-template-columns: 1fr;
+  }
+
+  #messages-list .message-card .asta-mission-actions a[href*="wa.me"] {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

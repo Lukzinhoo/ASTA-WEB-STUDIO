@@ -1,0 +1,338 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   CONFIGURAÇÕES — MINIMAL PREMIUM
+   ========================================== */
+
+#view-settings {
+  color: #ededf0;
+}
+
+#view-settings .settings-premium-heading {
+  margin: 0 0 30px;
+}
+
+#view-settings .settings-premium-eyebrow {
+  display: block;
+  color: #888890;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  margin-bottom: 13px;
+}
+
+#view-settings .settings-premium-heading h1 {
+  font-size: 26px;
+  letter-spacing: -0.8px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+#view-settings .settings-premium-heading p {
+  font-size: 12px;
+  color: #9999a2;
+}
+
+/* LAYOUT PRINCIPAL */
+
+#view-settings .settings-premium-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid #303036;
+  border-radius: 13px;
+  background: #1c1c20;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* MENU INTERNO */
+
+#view-settings .settings-premium-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 26px 13px 18px;
+  background: #222226;
+  border-right: 1px solid #343439;
+}
+
+#view-settings .settings-premium-nav-title {
+  color: #888891;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.35px;
+  padding: 0 12px 17px;
+}
+
+#view-settings .settings-premium-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 13px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #a6a6ad;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 550;
+  transition: background 0.2s, color 0.2s;
+}
+
+#view-settings .settings-premium-nav-item:hover {
+  background: #303035;
+  color: #f3f3f5;
+}
+
+#view-settings .settings-premium-nav-item.active {
+  background: #38383d;
+  color: white;
+}
+
+#view-settings .settings-premium-nav-icon {
+  width: 18px;
+  text-align: center;
+  font-size: 17px;
+  color: #8d8d97;
+}
+
+#view-settings .settings-premium-nav-item.active
+.settings-premium-nav-icon {
+  color: #ff3159;
+}
+
+#view-settings .settings-premium-nav-footer {
+  margin-top: auto;
+  padding: 20px 12px 4px;
+  border-top: 1px solid #37373c;
+  color: #a8a8b0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+#view-settings .settings-premium-nav-footer small {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #797981;
+}
+
+/* ÁREA DE CONTEÚDO */
+
+#view-settings .settings-premium-content {
+  min-width: 0;
+  padding: 37px clamp(20px, 4vw, 64px) 48px;
+  background: #1c1c20;
+}
+
+#view-settings .settings-premium-panel {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: 860px;
+}
+
+#view-settings .settings-premium-panel[hidden] {
+  display: none !important;
+}
+
+#view-settings .settings-premium-panel > h2 {
+  font-size: 17px;
+  font-weight: 650;
+  margin: 0 0 8px;
+  letter-spacing: -0.3px;
+}
+
+#view-settings .settings-premium-subtitle {
+  margin: 0 0 32px;
+  color: #92929b;
+  font-size: 12px;
+  line-height: 1.6;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #303035;
+}
+
+/* FORMULÁRIOS */
+
+#view-settings .settings-premium-form {
+  display: block;
+}
+
+#view-settings .settings-premium-row {
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 0.9fr)
+    minmax(0, 1.15fr);
+  align-items: center;
+  gap: 20px;
+  min-height: 76px;
+  padding: 14px 0;
+  border-bottom: 1px solid #2b2b30;
+}
+
+#view-settings .settings-premium-row > label {
+  color: #d8d8dd;
+  font-size: 11px;
+  font-weight: 550;
+}
+
+#view-settings .settings-premium-row > input,
+#view-settings .settings-premium-row > select {
+  min-height: 39px;
+  width: 100%;
+  border: 1px solid #39393f;
+  border-radius: 7px;
+  background: #28282d;
+  color: #f5f5f6;
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+#view-settings .settings-premium-row > input:focus,
+#view-settings .settings-premium-row > select:focus {
+  outline: none;
+  border-color: #c63955;
+  box-shadow: 0 0 0 3px rgba(255, 23, 76, 0.09);
+}
+
+/* FOTO DE PERFIL */
+
+#view-settings .settings-premium-avatar {
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 0.9fr)
+    minmax(0, 1.15fr);
+  align-items: center;
+  gap: 20px;
+  padding: 0 0 23px;
+  border-bottom: 1px solid #2b2b30;
+}
+
+#view-settings .settings-premium-avatar img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #29292e;
+  border: 1px solid #414149;
+}
+
+#view-settings .settings-premium-avatar .subtle-btn {
+  font-size: 11px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  background: #2b2b30;
+  border: 1px solid #414148;
+}
+
+#view-settings .settings-premium-avatar > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* PREFERÊNCIAS */
+
+#view-settings .settings-premium-checkbox-row {
+  display: flex;
+}
+
+#view-settings .settings-premium-checkbox-row .check-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#view-settings .settings-premium-checkbox-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: #ff174c;
+}
+
+/* BOTÕES E MENSAGENS */
+
+#view-settings .settings-premium-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-top: 25px;
+}
+
+#view-settings .settings-premium-footer [role="status"] {
+  margin: 0 auto 0 0;
+  font-size: 11px;
+  color: #86cda8;
+}
+
+#view-settings .settings-premium-footer .primary-btn {
+  padding: 11px 17px;
+  font-size: 11px;
+  border-radius: 6px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  #view-settings .settings-premium-layout {
+    grid-template-columns: 180px minmax(0, 1fr);
+  }
+
+  #view-settings .settings-premium-content {
+    padding: 28px 22px;
+  }
+
+  #view-settings .settings-premium-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+}
+
+@media (max-width: 650px) {
+  #view-settings .settings-premium-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #view-settings .settings-premium-nav {
+    border-right: 0;
+    border-bottom: 1px solid #343439;
+    padding: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #view-settings .settings-premium-nav-title,
+  #view-settings .settings-premium-nav-footer {
+    display: none;
+  }
+
+  #view-settings .settings-premium-nav-item {
+    width: auto;
+    flex: 1 1 40%;
+    justify-content: center;
+    padding: 11px 8px;
+    font-size: 11px;
+  }
+
+  #view-settings .settings-premium-content {
+    padding: 25px 18px 32px;
+  }
+
+  #view-settings .settings-premium-avatar {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #view-settings .settings-premium-heading h1 {
+    font-size: 23px;
+  }
+}

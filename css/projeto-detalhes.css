@@ -1,0 +1,1316 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   DETALHES DO PROJETO — VERSÃO 3
+   VISUAL PRETO E VERMELHO
+========================================== */
+
+:root {
+  color-scheme: dark;
+
+  --background: #08080d;
+  --surface: #151118;
+  --surface-2: #1c151e;
+
+  --red: #ff2452;
+  --red-dark: #aa1233;
+
+  --white: #f8f7fa;
+  --muted: #b8aeb9;
+
+  --border: rgba(255, 94, 126, 0.22);
+}
+
+/* ==========================================
+   CONFIGURAÇÕES GERAIS
+========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--white);
+
+  background:
+    radial-gradient(
+      ellipse at 90% 14%,
+      rgba(148, 10, 40, 0.25),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 0% 85%,
+      rgba(150, 12, 43, 0.14),
+      transparent 40%
+    ),
+    var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  background: var(--red);
+  color: white;
+}
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.site-header {
+  position: relative;
+  z-index: 5;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(9, 8, 13, 0.94);
+}
+
+.header-inner {
+  width: min(1320px, calc(100% - 48px));
+  min-height: 76px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* LOGOTIPO */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+.brand-symbol {
+  color: var(--red);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.brand strong {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+}
+
+.brand small {
+  color: #d0c7d1;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* MENU */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 31px;
+}
+
+.header-nav a {
+  position: relative;
+
+  padding: 28px 0;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #d3cdd4;
+
+  transition: color 0.25s ease;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: white;
+}
+
+.header-nav a.active::after {
+  content: "";
+
+  position: absolute;
+
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: var(--red);
+
+  box-shadow: 0 0 14px var(--red);
+}
+
+/* ADMINISTRATIVO */
+
+.admin-link {
+  padding: 12px 18px;
+
+  border: 1px solid var(--red);
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  box-shadow: 0 0 17px rgba(255, 36, 82, 0.14);
+
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.admin-link:hover {
+  background: var(--red);
+
+  box-shadow: 0 0 24px rgba(255, 36, 82, 0.3);
+}
+
+/* ==========================================
+   PÁGINA PRINCIPAL
+========================================== */
+
+.page {
+  position: relative;
+  isolation: isolate;
+
+  width: min(1320px, calc(100% - 48px));
+
+  margin: 0 auto;
+  padding: 35px 0 75px;
+}
+
+/* ==========================================
+   PERSONAGEM ASTA NO FUNDO
+========================================== */
+
+.hero-art {
+  position: absolute;
+  z-index: -1;
+
+  top: -15px;
+  right: -55px;
+
+  width: min(560px, 48vw);
+  height: 400px;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  opacity: 0.48;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 45%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    black 45%,
+    transparent 100%
+  );
+}
+
+.hero-art-glow {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at 70% 45%,
+    rgba(255, 20, 60, 0.6),
+    transparent 65%
+  );
+
+  filter: blur(40px);
+}
+
+.hero-art img {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center top;
+
+  filter:
+    grayscale(0.35)
+    drop-shadow(0 0 25px rgba(255, 0, 50, 0.45));
+}
+
+/* ==========================================
+   BREADCRUMBS
+========================================== */
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  color: #b4aab5;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.3px;
+}
+
+.breadcrumbs a {
+  color: var(--red);
+
+  transition: color 0.25s ease;
+}
+
+.breadcrumbs a:hover {
+  color: white;
+}
+
+.breadcrumbs span[aria-current="page"] {
+  color: #d5cbd6;
+}
+
+/* ==========================================
+   BOTÃO VOLTAR
+========================================== */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 39px;
+  padding: 9px 17px;
+
+  border: 1px solid var(--red);
+  border-radius: 99px;
+
+  background: rgba(85, 9, 28, 0.32);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.back-link:hover {
+  background: var(--red);
+  transform: translateX(-3px);
+}
+
+/* ==========================================
+   CARREGAMENTO
+========================================== */
+
+.feedback {
+  margin: 30px 0;
+  padding: 22px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  color: var(--muted);
+  background: var(--surface);
+}
+
+/* ==========================================
+   TÍTULO DO PROJETO
+========================================== */
+
+.project-heading {
+  position: relative;
+
+  padding: 24px 0 18px;
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 14px;
+
+  border: 1px solid rgba(255, 50, 94, 0.42);
+  border-radius: 99px;
+
+  color: #ff819d;
+  background: rgba(255, 36, 82, 0.11);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.project-heading h1 {
+  max-width: 850px;
+
+  margin: 12px 0 5px;
+
+  font-family: "Rajdhani", "Inter", sans-serif;
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  max-width: 750px;
+  margin: 0;
+
+  color: #d1c8d1;
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.red-line {
+  width: 82px;
+  height: 3px;
+
+  margin-top: 20px;
+
+  background: var(--red);
+
+  box-shadow: 0 0 16px rgba(255, 36, 82, 0.6);
+}
+
+/* ==========================================
+   GRID PRINCIPAL
+========================================== */
+
+.showcase-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(340px, 1fr);
+
+  align-items: start;
+
+  gap: 24px;
+  margin-top: 14px;
+}
+
+/* ==========================================
+   ESTILO DOS CARTÕES
+========================================== */
+
+.gallery-card,
+.info-card,
+.tech-card,
+.about-card {
+  min-width: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(35, 20, 29, 0.94),
+    rgba(15, 13, 20, 0.97)
+  );
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gallery-card:hover,
+.info-card:hover,
+.tech-card:hover,
+.about-card:hover {
+  border-color: rgba(255, 94, 126, 0.38);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.35),
+    0 0 22px rgba(255, 36, 82, 0.04);
+}
+
+/* ==========================================
+   GALERIA DE IMAGENS
+========================================== */
+
+.gallery-card {
+  overflow: hidden;
+}
+
+/* BARRA DO NAVEGADOR */
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  height: 47px;
+  padding: 0 18px;
+
+  background: #201c27;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  font-size: 12px;
+  color: #c9c4ce;
+}
+
+.browser-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.browser-dots i {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  background: #ff4668;
+}
+
+.browser-dots i:nth-child(2) {
+  background: #ffc744;
+}
+
+.browser-dots i:nth-child(3) {
+  background: #50cc87;
+}
+
+#domain {
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-icon {
+  color: #a9a1af;
+  font-size: 19px;
+}
+
+/* ==========================================
+   ÁREA DA IMAGEM PRINCIPAL
+========================================== */
+
+.gallery-stage {
+  position: relative;
+
+  min-height: 300px;
+
+  background: #0a0e15;
+}
+
+.gallery-content {
+  height: 440px;
+
+  overflow: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #6c4c5d #15121a;
+}
+
+.gallery-content img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+.gallery-empty {
+  display: grid;
+  place-items: center;
+
+  min-height: 300px;
+  margin: 0;
+  padding: 24px;
+
+  color: #b6a8b7;
+
+  text-align: center;
+}
+
+/* ==========================================
+   SETAS DA GALERIA
+========================================== */
+
+.gallery-arrow {
+  position: absolute;
+  z-index: 2;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: grid;
+  place-items: center;
+
+  width: 43px;
+  height: 43px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+
+  color: white;
+  background: rgba(16, 14, 22, 0.85);
+
+  font-size: 31px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.gallery-prev {
+  left: 12px;
+}
+
+.gallery-next {
+  right: 12px;
+}
+
+.gallery-arrow:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* ==========================================
+   MINIATURAS
+========================================== */
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 12px;
+
+  padding: 14px;
+
+  overflow-x: auto;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-thumb {
+  flex: 0 0 125px;
+
+  height: 75px;
+  overflow: hidden;
+
+  padding: 0;
+
+  border: 2px solid #3d3440;
+  border-radius: 9px;
+
+  background: #0c0d13;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.gallery-thumb:hover {
+  border-color: rgba(255, 36, 82, 0.65);
+}
+
+.gallery-thumb.active {
+  border-color: var(--red);
+
+  box-shadow: 0 0 12px rgba(255, 36, 82, 0.3);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ==========================================
+   COLUNA DIREITA
+========================================== */
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.info-card,
+.tech-card {
+  padding: 24px 25px;
+}
+
+/* ==========================================
+   TÍTULOS DOS CARTÕES
+========================================== */
+
+.info-card h2,
+.tech-card h2,
+.about-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 0 0 19px;
+
+  font-family: "Rajdhani", "Inter", sans-serif;
+  font-size: 25px;
+
+  line-height: 1.2;
+}
+
+.heading-slash {
+  color: var(--red);
+
+  font-size: 30px;
+  font-weight: 900;
+}
+
+/* ==========================================
+   LINHAS DE INFORMAÇÕES
+========================================== */
+
+.info-row {
+  display: grid;
+
+  grid-template-columns:
+    30px
+    minmax(90px, 1fr)
+    minmax(110px, 1fr);
+
+  align-items: center;
+
+  gap: 12px;
+  min-height: 53px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  font-size: 12px;
+}
+
+.info-icon {
+  color: var(--red);
+
+  font-size: 22px;
+  text-align: center;
+}
+
+.info-label {
+  color: #d3cbd4;
+}
+
+.info-row strong {
+  font-weight: 600;
+  text-align: right;
+
+  overflow-wrap: anywhere;
+}
+
+.info-row a {
+  color: #ff3d67;
+
+  font-weight: 800;
+  text-align: right;
+
+  overflow-wrap: anywhere;
+
+  transition: color 0.25s ease;
+}
+
+.info-row a:hover {
+  color: white;
+}
+
+.unavailable {
+  color: #89808e;
+
+  font-size: 11px;
+  text-align: right;
+}
+
+/* ==========================================
+   TECNOLOGIAS
+========================================== */
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 39px;
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 10px;
+
+  background: #231b26;
+  color: #eee5ef;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.tech-tag:hover {
+  border-color: rgba(255, 36, 82, 0.5);
+  background: rgba(255, 36, 82, 0.1);
+
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   SOBRE O PROJETO
+========================================== */
+
+.about-card {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.7fr)
+    minmax(250px, 1fr);
+
+  gap: 34px;
+
+  margin-top: 22px;
+  padding: 28px 30px;
+}
+
+.about-project {
+  min-width: 0;
+}
+
+.about-project p,
+.resources p {
+  margin: 0;
+
+  color: #c6bdc7;
+
+  font-size: 14px;
+  line-height: 1.9;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.resources {
+  min-width: 0;
+
+  padding-left: 30px;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================
+   BOTÃO EXPLORAR PROJETOS
+========================================== */
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 20px;
+  padding: 12px 17px;
+
+  border: 1px solid var(--red);
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.secondary-button:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   NOVA SEÇÃO — CHAMADA PARA CONTATO
+========================================== */
+
+.project-cta {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-top: 30px;
+  padding: 42px 45px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 36, 82, 0.3);
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      ellipse at 95% 50%,
+      rgba(255, 36, 82, 0.2),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #1e111b,
+      #0d0c13 75%
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.3);
+}
+
+.project-cta::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--red),
+    transparent
+  );
+}
+
+.project-cta::after {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  top: -120px;
+  right: -70px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 36, 82, 0.08);
+
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.project-cta-content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 700px;
+}
+
+.project-cta-label {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  color: var(--red);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.project-cta h2 {
+  margin: 0 0 10px;
+
+  font-family: "Rajdhani", "Inter", sans-serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.project-cta p {
+  max-width: 550px;
+
+  margin: 0;
+
+  color: #c6bbc7;
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   BOTÃO SOLICITAR PROJETO
+========================================== */
+
+.project-cta-button {
+  position: relative;
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  flex-shrink: 0;
+
+  min-height: 52px;
+  padding: 15px 23px;
+
+  border: 1px solid var(--red);
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #ff315c,
+    #b80e35
+  );
+
+  color: white;
+
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+
+  box-shadow:
+    0 10px 28px rgba(255, 36, 82, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.project-cta-button:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(
+    135deg,
+    #ff4d74,
+    #d71946
+  );
+
+  box-shadow:
+    0 15px 35px rgba(255, 36, 82, 0.35);
+}
+
+.project-cta-button span {
+  font-size: 19px;
+}
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  padding:
+    24px
+    max(24px, calc((100% - 1320px) / 2));
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: #99909e;
+
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.footer-brand {
+  color: var(--red);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  transition: color 0.25s ease;
+}
+
+.footer-brand:hover {
+  color: #ff6486;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-back {
+  color: #bcb3bf;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  transition: color 0.25s ease;
+}
+
+.footer-back:hover {
+  color: var(--red);
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ff6486;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   RESPONSIVIDADE — TABLETS
+========================================== */
+
+@media (max-width: 1050px) {
+
+  .header-nav {
+    gap: 17px;
+  }
+
+  .showcase-grid {
+    grid-template-columns:
+      minmax(0, 1.2fr)
+      minmax(300px, 1fr);
+  }
+
+  .info-card,
+  .tech-card {
+    padding: 20px;
+  }
+
+  .project-cta {
+    padding: 35px;
+  }
+
+}
+
+/* ==========================================
+   RESPONSIVIDADE — TELAS MÉDIAS
+========================================== */
+
+@media (max-width: 850px) {
+
+  .header-nav {
+    display: none;
+  }
+
+  .showcase-grid,
+  .about-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-art {
+    width: 60vw;
+    opacity: 0.25;
+  }
+
+  .gallery-content {
+    height: 400px;
+  }
+
+  .resources {
+    padding: 22px 0 0;
+
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .project-cta {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 24px;
+  }
+
+}
+
+/* ==========================================
+   RESPONSIVIDADE — CELULARES
+========================================== */
+
+@media (max-width: 520px) {
+
+  .header-inner,
+  .page {
+    width: calc(100% - 30px);
+  }
+
+  .header-inner {
+    min-height: 70px;
+    gap: 10px;
+  }
+
+  .brand strong {
+    font-size: 21px;
+  }
+
+  .brand small {
+    display: none;
+  }
+
+  .admin-link {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .breadcrumbs {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .project-heading h1 {
+    font-size: 43px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .gallery-content {
+    height: 300px;
+  }
+
+  .info-card,
+  .tech-card,
+  .about-card {
+    padding: 20px;
+  }
+
+  .info-row {
+    grid-template-columns:
+      24px
+      minmax(80px, 1fr)
+      minmax(90px, 1fr);
+
+    gap: 8px;
+
+    font-size: 11px;
+  }
+
+  .info-card h2,
+  .tech-card h2,
+  .about-card h2 {
+    font-size: 22px;
+  }
+
+  .project-cta {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .project-cta h2 {
+    font-size: 30px;
+  }
+
+  .project-cta p {
+    font-size: 13px;
+  }
+
+  .project-cta-button {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .site-footer {
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+}
+
+/* ==========================================
+   REDUÇÃO DE ANIMAÇÕES
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .project-cta-button,
+  .gallery-card,
+  .info-card,
+  .tech-card,
+  .about-card,
+  .secondary-button,
+  .back-link,
+  .tech-tag {
+    transition: none;
+  }
+
+  .project-cta-button:hover,
+  .secondary-button:hover,
+  .back-link:hover,
+  .tech-tag:hover {
+    transform: none;
+  }
+
+}
+
+/* ==========================================
+   FIM — ASTA WEB STUDIO
+   PROJETO DETALHES V3
+========================================== */

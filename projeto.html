@@ -1,0 +1,1334 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+
+  <meta
+    name="description"
+    content="Explore os projetos e experiências digitais desenvolvidos pela ASTA WEB STUDIO."
+  >
+
+  <title>Detalhes do Projeto | ASTA WEB STUDIO</title>
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS ORIGINAL -->
+  <link rel="stylesheet" href="/css/projeto-detalhes.css?v=4">
+
+  <!-- ESTILO APRIMORADO -->
+  <style>
+    :root {
+      --bg: #08090d;
+      --surface: #101116;
+      --surface-2: #16171e;
+      --red: #e62249;
+      --red-light: #ff4565;
+      --white: #f7f7fa;
+      --muted: #9a9ba7;
+      --border: rgba(255,255,255,.09);
+      --radius: 22px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--white);
+      background:
+        radial-gradient(
+          ellipse at 85% 8%,
+          rgba(230,34,73,.13),
+          transparent 35%
+        ),
+        radial-gradient(
+          ellipse at 10% 45%,
+          rgba(105,34,85,.08),
+          transparent 40%
+        ),
+        var(--bg);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.015) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.015) 1px,
+          transparent 1px
+        );
+      background-size: 65px 65px;
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+      );
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--red-light);
+      outline-offset: 4px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* CABEÇALHO */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      background: rgba(8,9,13,.88);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      width: min(1200px, calc(100% - 40px));
+      min-height: 82px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .brand-symbol {
+      color: var(--red);
+      font-size: 39px;
+      line-height: 1;
+      filter: drop-shadow(
+        0 0 12px rgba(230,34,73,.35)
+      );
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-name strong {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .brand-name small {
+      margin-top: 3px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header-nav a {
+      position: relative;
+      padding: 10px 0;
+      color: #b5b5c0;
+      font-size: 12px;
+      font-weight: 700;
+      transition: color .25s;
+    }
+
+    .header-nav a:hover,
+    .header-nav a.active {
+      color: white;
+    }
+
+    .header-nav a.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .admin-link {
+      padding: 12px 17px;
+      border: 1px solid rgba(230,34,73,.35);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .25s;
+    }
+
+    .admin-link:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ÁREA PRINCIPAL */
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 38px 0 100px;
+    }
+
+    .hero-art {
+      position: absolute;
+      top: 0;
+      right: -70px;
+      width: 350px;
+      height: 420px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .14;
+      overflow: hidden;
+    }
+
+    .hero-art img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: grayscale(.3);
+    }
+
+    .hero-art-glow {
+      position: absolute;
+      inset: 20%;
+      background: var(--red);
+      filter: blur(90px);
+      opacity: .3;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 11px;
+      color: #777986;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--red-light);
+    }
+
+    .breadcrumbs [aria-current="page"] {
+      color: var(--red-light);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      color: #c3c4cf;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .back-link:hover {
+      color: var(--red-light);
+      transform: translateX(-4px);
+    }
+
+    .feedback {
+      margin: 40px 0;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      color: #c8c8d0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* TÍTULO */
+
+    .project-heading {
+      position: relative;
+      padding: 65px 0 43px;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 19px;
+      color: var(--red-light);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 25px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .project-heading .category {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 17px;
+      padding: 7px 13px;
+      border: 1px solid rgba(230,34,73,.25);
+      border-radius: 6px;
+      background: rgba(230,34,73,.08);
+      color: #ff6984;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    #title {
+      margin: 0;
+      font-family: "Rajdhani", sans-serif;
+      font-size: clamp(46px, 6vw, 84px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -1.5px;
+      overflow-wrap: anywhere;
+    }
+
+    .project-heading .subtitle {
+      max-width: 750px;
+      margin: 22px 0 0;
+      color: #a5a6b2;
+      font-size: 15px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .red-line {
+      width: 80px;
+      height: 4px;
+      margin-top: 30px;
+      border-radius: 20px;
+      background: linear-gradient(
+        90deg,
+        var(--red),
+        #ff7089
+      );
+      box-shadow: 0 0 22px rgba(230,34,73,.3);
+    }
+
+    /* GALERIA E INFORMAÇÕES */
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(290px, 1fr);
+      align-items: start;
+      gap: 24px;
+    }
+
+    .gallery-card,
+    .info-card,
+    .tech-card,
+    .about-card {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(
+        145deg,
+        #16171d,
+        #101116 75%
+      );
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+    }
+
+    .gallery-card {
+      overflow: hidden;
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      height: 51px;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+      background: #1a1b22;
+    }
+
+    .browser-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .browser-dots i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #454651;
+    }
+
+    .browser-dots i:first-child {
+      background: #f46b75;
+    }
+
+    .browser-dots i:nth-child(2) {
+      background: #e5ba65;
+    }
+
+    .browser-dots i:nth-child(3) {
+      background: #6dbd93;
+    }
+
+    #domain {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      color: #a7a8b3;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .browser-icon {
+      color: #8d8e9b;
+      font-size: 18px;
+    }
+
+    .gallery-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 370px;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(230,34,73,.09),
+          transparent 65%
+        ),
+        #0b0c11;
+    }
+
+    .gallery-content {
+      width: 100%;
+      min-height: 370px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gallery-content img {
+      display: block;
+      width: 100%;
+      max-height: 620px;
+      object-fit: contain;
+    }
+
+    .gallery-empty {
+      padding: 50px 25px;
+      color: #898a97;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      background: rgba(9,9,14,.85);
+      color: white;
+      font-size: 29px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: .25s;
+    }
+
+    .gallery-arrow:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .gallery-prev {
+      left: 15px;
+    }
+
+    .gallery-next {
+      right: 15px;
+    }
+
+    .gallery-thumbnails {
+      display: flex;
+      gap: 12px;
+      padding: 15px;
+      overflow-x: auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .gallery-thumbnails button {
+      flex-shrink: 0;
+      width: 95px;
+      height: 65px;
+      padding: 3px;
+      overflow: hidden;
+      border: 1px solid #33343f;
+      border-radius: 10px;
+      background: #111217;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .gallery-thumbnails button:hover,
+    .gallery-thumbnails button.active,
+    .gallery-thumbnails button[aria-current="true"] {
+      border-color: var(--red);
+    }
+
+    .gallery-thumbnails img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* COLUNA LATERAL */
+
+    .side-column {
+      display: grid;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .info-card,
+    .tech-card {
+      padding: 27px;
+    }
+
+    .info-card h2,
+    .tech-card h2,
+    .about-card h2 {
+      margin: 0 0 24px;
+      color: #f5f5f7;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .heading-slash {
+      margin-right: 8px;
+      color: var(--red);
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 23px minmax(0, 1fr);
+      align-items: center;
+      gap: 6px 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      grid-row: span 2;
+      color: var(--red-light);
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .info-label {
+      color: #9394a0;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .info-row strong,
+    .info-row a,
+    .info-row .unavailable {
+      grid-column: 2;
+      min-width: 0;
+      color: #e6e6ec;
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .info-row a {
+      color: #ff6480;
+      transition: color .2s;
+    }
+
+    .info-row a:hover {
+      color: white;
+    }
+
+    .info-row .unavailable {
+      color: #737480;
+      font-weight: 500;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tech-list > * {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 13px;
+      border: 1px solid rgba(230,34,73,.19);
+      border-radius: 8px;
+      background: rgba(230,34,73,.075);
+      color: #e4d5da;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* SOBRE */
+
+    .about-card {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 50px;
+      margin-top: 25px;
+      padding: 36px;
+    }
+
+    .about-project p,
+    .resources p {
+      margin: 0;
+      color: #a3a4b0;
+      font-size: 14px;
+      line-height: 2;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .resources {
+      padding-left: 35px;
+      border-left: 1px solid var(--border);
+    }
+
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 25px;
+      padding: 13px 17px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .secondary-button:hover {
+      border-color: var(--red);
+      background: rgba(230,34,73,.1);
+    }
+
+    /* CHAMADA FINAL */
+
+    .project-cta {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      margin-top: 28px;
+      padding: 48px;
+      overflow: hidden;
+      border: 1px solid rgba(230,34,73,.3);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(
+          circle at 95% 50%,
+          rgba(230,34,73,.23),
+          transparent 45%
+        ),
+        linear-gradient(120deg, #1b1018, #100d14);
+    }
+
+    .project-cta::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .project-cta-label {
+      color: #ff7089;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .project-cta h2 {
+      margin: 12px 0;
+      font-family: "Rajdhani", sans-serif;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+    }
+
+    .project-cta p {
+      max-width: 490px;
+      margin: 0;
+      color: #b0a5b0;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .project-cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-shrink: 0;
+      padding: 17px 23px;
+      border-radius: 10px;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(230,34,73,.2);
+      transition: .25s;
+    }
+
+    .project-cta-button:hover {
+      background: var(--red-light);
+      transform: translateY(-3px);
+    }
+
+    /* RODAPÉ */
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 30px max(20px, calc((100vw - 1200px)/2));
+      border-top: 1px solid var(--border);
+      background: #090a0e;
+    }
+
+    .footer-brand {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .footer-brand span {
+      color: var(--red);
+    }
+
+    .site-footer p {
+      margin: 0;
+      color: #777885;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .footer-back {
+      color: #b9b9c4;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-back:hover {
+      color: var(--red-light);
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 1050px) {
+      .header-nav {
+        gap: 15px;
+      }
+
+      .showcase-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .header-inner {
+        min-height: 74px;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-column {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .about-card {
+        gap: 25px;
+      }
+
+      .resources {
+        padding-left: 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        width: calc(100% - 28px);
+      }
+
+      .brand-name strong {
+        font-size: 23px;
+      }
+
+      .brand-symbol {
+        font-size: 32px;
+      }
+
+      .admin-link {
+        padding: 10px;
+        font-size: 10px;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+        padding-top: 25px;
+        padding-bottom: 55px;
+      }
+
+      .breadcrumbs {
+        gap: 7px;
+        font-size: 9px;
+      }
+
+      .project-heading {
+        padding: 48px 0 32px;
+      }
+
+      #title {
+        font-size: clamp(38px, 11vw, 58px);
+      }
+
+      .project-heading .subtitle {
+        font-size: 13px;
+      }
+
+      .gallery-stage,
+      .gallery-content {
+        min-height: 230px;
+      }
+
+      .side-column,
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card,
+      .tech-card {
+        padding: 23px;
+      }
+
+      .about-card {
+        padding: 25px;
+        gap: 30px;
+      }
+
+      .resources {
+        padding: 25px 0 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .project-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 25px;
+      }
+
+      .project-cta-button {
+        width: 100%;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-art {
+        right: -100px;
+        width: 250px;
+        opacity: .08;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+
+  <!-- JAVASCRIPT ORIGINAL -->
+  <script src="/js/projeto-detalhes.js?v=3" defer></script>
+</head>
+
+<body>
+
+  <!-- ======================================
+       CABEÇALHO
+  ======================================= -->
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a
+        class="brand"
+        href="/index.html"
+        aria-label="ASTA WEB STUDIO - Página inicial"
+      >
+        <span class="brand-symbol" aria-hidden="true">✿</span>
+
+        <span class="brand-name">
+          <strong>ASTA</strong>
+          <small>WEB STUDIO</small>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Menu principal">
+        <a href="/index.html#inicio">Início</a>
+        <a href="/index.html#sobre">Sobre</a>
+        <a href="/index.html#projetos" class="active" aria-current="page">
+          Projetos
+        </a>
+        <a href="/index.html#servicos">Serviços</a>
+        <a href="/index.html#contato">Contato</a>
+      </nav>
+
+      <a class="admin-link" href="/admin.html">
+        Área Administrativa ↗
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ======================================
+       CONTEÚDO PRINCIPAL
+  ======================================= -->
+
+  <main class="page">
+
+    <!-- PERSONAGEM DECORATIVO -->
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-art-glow"></div>
+      <img
+        src="/assets/asta-personagem.png"
+        alt=""
+        loading="lazy"
+      >
+    </div>
+
+    <!-- LOCALIZAÇÃO -->
+    <nav class="breadcrumbs" aria-label="Localização da página">
+      <a href="/index.html">ASTA WEB STUDIO</a>
+      <span aria-hidden="true">/</span>
+      <a href="/index.html#projetos">PORTFÓLIO</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">DETALHES DO PROJETO</span>
+    </nav>
+
+    <a class="back-link" href="/index.html#projetos">
+      <span aria-hidden="true">←</span>
+      Voltar aos projetos
+    </a>
+
+    <!-- STATUS -->
+    <div
+      id="feedback"
+      class="feedback"
+      role="status"
+      aria-live="polite"
+    >
+      Carregando informações do projeto...
+    </div>
+
+    <!-- ======================================
+         PROJETO DINÂMICO
+    ======================================= -->
+
+    <article id="detail" hidden>
+
+      <!-- APRESENTAÇÃO -->
+      <section class="project-heading" aria-labelledby="title">
+
+        <div class="eyebrow">
+          PROJETO EM DESTAQUE
+        </div>
+
+        <span id="category" class="category">
+          Projeto
+        </span>
+
+        <h1 id="title">
+          Projeto ASTA WEB STUDIO
+        </h1>
+
+        <p id="description" class="subtitle"></p>
+
+        <div class="red-line" aria-hidden="true"></div>
+
+      </section>
+
+      <!-- GALERIA + INFORMAÇÕES -->
+      <div class="showcase-grid">
+
+        <section
+          class="gallery-card"
+          aria-label="Galeria de imagens do projeto"
+        >
+
+          <div class="browser-bar">
+
+            <div class="browser-dots" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <span id="domain">Prévia do projeto</span>
+
+            <span class="browser-icon" aria-hidden="true">
+              ↗
+            </span>
+
+          </div>
+
+          <div class="gallery-stage">
+
+            <div
+              id="gallery-content"
+              class="gallery-content"
+              aria-live="polite"
+            >
+              <p class="gallery-empty">
+                Carregando captura do projeto...
+              </p>
+            </div>
+
+            <button
+              id="gallery-prev"
+              class="gallery-arrow gallery-prev"
+              type="button"
+              aria-label="Visualizar imagem anterior"
+              hidden
+            >
+              ‹
+            </button>
+
+            <button
+              id="gallery-next"
+              class="gallery-arrow gallery-next"
+              type="button"
+              aria-label="Visualizar próxima imagem"
+              hidden
+            >
+              ›
+            </button>
+
+          </div>
+
+          <div
+            id="gallery-thumbnails"
+            class="gallery-thumbnails"
+            aria-label="Selecionar imagem da galeria"
+            hidden
+          ></div>
+
+        </section>
+
+        <!-- INFORMAÇÕES -->
+        <aside class="side-column">
+
+          <section class="info-card">
+
+            <h2>
+              <span class="heading-slash" aria-hidden="true">/</span>
+              Informações do projeto
+            </h2>
+
+            <div class="info-row">
+              <span class="info-icon" aria-hidden="true">▦</span>
+              <span class="info-label">Publicado em</span>
+              <strong id="date">Não informado</strong>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon" aria-hidden="true">◈</span>
+              <span class="info-label">Categoria</span>
+              <strong id="category-info">Projeto digital</strong>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon" aria-hidden="true">↗</span>
+              <span class="info-label">Site do projeto</span>
+
+              <a
+                id="website"
+                target="_blank"
+                rel="noopener noreferrer"
+                hidden
+              >
+                Acessar site ↗
+              </a>
+
+              <span
+                id="website-empty"
+                class="unavailable"
+              >
+                Não disponível
+              </span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-icon" aria-hidden="true">⌘</span>
+              <span class="info-label">Código-fonte</span>
+
+              <a
+                id="github"
+                target="_blank"
+                rel="noopener noreferrer"
+                hidden
+              >
+                Ver no GitHub ↗
+              </a>
+
+              <span
+                id="github-empty"
+                class="unavailable"
+              >
+                Não disponível
+              </span>
+            </div>
+
+          </section>
+
+          <!-- TECNOLOGIAS -->
+          <section class="tech-card">
+
+            <h2>
+              <span class="heading-slash" aria-hidden="true">/</span>
+              Tecnologias utilizadas
+            </h2>
+
+            <div
+              id="technologies"
+              class="tech-list"
+              aria-label="Tecnologias do projeto"
+            ></div>
+
+          </section>
+
+        </aside>
+
+      </div>
+
+      <!-- SOBRE O PROJETO -->
+      <section class="about-card">
+
+        <div class="about-project">
+
+          <h2>
+            <span class="heading-slash" aria-hidden="true">/</span>
+            Sobre o projeto
+          </h2>
+
+          <p id="long-description"></p>
+
+        </div>
+
+        <div class="resources">
+
+          <h2>
+            <span class="heading-slash" aria-hidden="true">/</span>
+            Detalhes adicionais
+          </h2>
+
+          <p id="resource-description">
+            Conheça mais sobre este projeto através
+            da descrição, das tecnologias utilizadas
+            e dos links disponibilizados.
+          </p>
+
+          <a
+            class="secondary-button"
+            href="/index.html#projetos"
+          >
+            <span aria-hidden="true">←</span>
+            Explorar outros projetos
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- CHAMADA FINAL -->
+      <section
+        class="project-cta"
+        aria-labelledby="project-cta-title"
+      >
+
+        <div class="project-cta-content">
+
+          <span class="project-cta-label">
+            ASTA WEB STUDIO
+          </span>
+
+          <h2 id="project-cta-title">
+            GOSTOU DESTE PROJETO?
+          </h2>
+
+          <p>
+            Transforme sua ideia em uma experiência digital
+            moderna, criativa e com identidade própria.
+          </p>
+
+        </div>
+
+        <a
+          href="/index.html#contato"
+          class="project-cta-button"
+        >
+          Solicitar um projeto
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- ======================================
+       RODAPÉ
+  ======================================= -->
+
+  <footer class="site-footer">
+
+    <a href="/index.html" class="footer-brand">
+      <span>✿</span> ASTA WEB STUDIO
+    </a>
+
+    <p>
+      © <span id="year"></span>
+      · DESIGN • CODE • CREATE
+    </p>
+
+    <a href="/index.html#projetos" class="footer-back">
+      Voltar ao portfólio ↑
+    </a>
+
+  </footer>
+
+  <script>
+    // Atualizar o ano do rodapé
+    const yearElement = document.getElementById("year");
+
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+  </script>
+
+</body>
+</html>

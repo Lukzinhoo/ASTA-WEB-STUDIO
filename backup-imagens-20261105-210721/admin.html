@@ -1,0 +1,765 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08080b">
+
+  <title>QG dos Touros Negros | ASTA WEB STUDIO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/admin.js" defer></script>
+
+  <style>
+    /* EMBLEMA OFICIAL DOS TOUROS NEGROS */
+
+    .login-symbol,
+    .brand-symbol,
+    .profile-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #080608;
+      overflow: hidden;
+    }
+
+    .login-symbol img,
+    .brand-symbol img,
+    .profile-avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: screen;
+    }
+
+    .login-symbol {
+      border: 2px solid #ed001e;
+      box-shadow: 0 0 25px rgba(237, 0, 30, 0.3);
+    }
+
+    .brand-symbol {
+      border: 1px solid #ed001e;
+    }
+
+    .profile-avatar {
+      border: 1px solid #ed001e;
+      border-radius: 50%;
+    }
+
+    /* EMBLEMA DO BANNER */
+
+    .welcome-banner {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-decoration {
+      position: absolute;
+      top: 50%;
+      right: 6%;
+      width: clamp(120px, 20vw, 230px);
+      height: clamp(120px, 20vw, 230px);
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .welcome-decoration img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 20px rgba(255, 0, 40, 0.35));
+    }
+
+    .welcome-banner > .welcome-label,
+    .welcome-banner > h2,
+    .welcome-banner > p {
+      position: relative;
+      z-index: 2;
+      max-width: 65%;
+    }
+
+    @media (max-width: 600px) {
+      .welcome-decoration {
+        right: -12px;
+        width: 130px;
+        height: 130px;
+        opacity: 0.35;
+      }
+
+      .welcome-banner > .welcome-label,
+      .welcome-banner > h2,
+      .welcome-banner > p {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <main id="login-screen" class="login-screen">
+    <div class="login-background"></div>
+
+    <a href="index.html" class="back-home">
+      ← Voltar ao site
+    </a>
+
+    <section class="login-card">
+
+      <div class="login-symbol">
+        <img
+          src="assets/touros-negros.png"
+          alt="Emblema dos Touros Negros"
+        >
+      </div>
+
+      <span class="login-eyebrow">
+        ASTA WEB STUDIO · ACESSO RESTRITO
+      </span>
+
+      <h1>
+        QG DOS
+        <span>TOUROS NEGROS</span>
+      </h1>
+
+      <p class="login-description">
+        Central de comando da ASTA WEB STUDIO.
+        Entre com suas credenciais administrativas.
+      </p>
+
+      <form id="login-form">
+
+        <div class="form-group">
+          <label for="username">Usuário</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Digite seu usuário"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Senha</label>
+
+          <div class="password-field">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              id="toggle-password"
+              class="toggle-password"
+              aria-label="Mostrar senha"
+            >
+              ◉
+            </button>
+          </div>
+        </div>
+
+        <p
+          id="login-message"
+          class="login-message"
+          role="status"
+        ></p>
+
+        <button type="submit" class="login-button">
+          ENTRAR NO QG
+          <span>→</span>
+        </button>
+
+      </form>
+
+      <p class="login-footer">
+        Área exclusiva para administradores.
+      </p>
+
+    </section>
+  </main>
+
+  <!-- PAINEL ADMINISTRATIVO -->
+  <div id="admin-panel" class="admin-layout" hidden>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-brand">
+
+        <div class="brand-symbol">
+          <img
+            src="assets/touros-negros.png"
+            alt="Logo dos Touros Negros"
+          >
+        </div>
+
+        <div>
+          <strong>TOUROS NEGROS</strong>
+          <span>ASTA WEB STUDIO</span>
+        </div>
+
+      </div>
+
+      <div class="sidebar-caption">
+        CENTRAL DE COMANDO
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Menu administrativo">
+
+        <button
+          type="button"
+          class="sidebar-link active"
+          data-view="dashboard"
+        >
+          <span class="nav-icon">◈</span>
+          Central de Comando
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-link"
+          data-view="missions"
+        >
+          <span class="nav-icon">▣</span>
+          Missões
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-link"
+          data-view="new-mission"
+        >
+          <span class="nav-icon">✚</span>
+          Nova Missão
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-link"
+          data-view="messages"
+        >
+          <span class="nav-icon">✉</span>
+          Mensagens
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-link"
+          data-view="settings"
+        >
+          <span class="nav-icon">⚙</span>
+          Configurações
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a href="index.html" class="site-link">
+          ↗ Visualizar site
+        </a>
+
+        <button
+          id="logout-button"
+          class="logout-button"
+          type="button"
+        >
+          ⎋ Sair do QG
+        </button>
+
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="admin-main">
+
+      <header class="admin-topbar">
+
+        <div class="topbar-left">
+
+          <button
+            id="sidebar-toggle"
+            class="sidebar-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <div class="topbar-heading">
+            <span>ASTA WEB STUDIO</span>
+            <strong id="topbar-title">
+              Central de Comando
+            </strong>
+          </div>
+
+        </div>
+
+        <!-- FOTO DE PERFIL -->
+        <div class="admin-profile">
+
+          <div class="profile-avatar">
+            <img
+              src="assets/touros-negros.png"
+              alt="Foto de perfil dos Touros Negros"
+            >
+          </div>
+
+          <div class="profile-details">
+            <strong id="profile-name">
+              Administrador
+            </strong>
+            <span>Capitão do QG</span>
+          </div>
+
+        </div>
+
+      </header>
+
+      <div class="admin-content">
+
+        <!-- CENTRAL DE COMANDO -->
+        <section
+          id="view-dashboard"
+          class="admin-view"
+        >
+
+          <div class="welcome-banner">
+
+            <span class="welcome-label">
+              BEM-VINDO AO QG
+            </span>
+
+            <h2>
+              CENTRAL DE
+              <span>COMANDO.</span>
+            </h2>
+
+            <p>
+              Organize suas missões, acompanhe seus projetos
+              e gerencie a ASTA WEB STUDIO.
+            </p>
+
+            <!-- EMBLEMA GRANDE -->
+            <div class="welcome-decoration">
+              <img
+                src="assets/touros-negros.png"
+                alt="Emblema dos Touros Negros"
+              >
+            </div>
+
+          </div>
+
+          <!-- INDICADORES -->
+          <div class="stats-grid">
+
+            <article class="stat-card">
+              <span class="stat-label">
+                TOTAL DE MISSÕES
+              </span>
+              <strong id="stat-total">0</strong>
+              <small>Projetos cadastrados</small>
+              <span class="stat-icon">▣</span>
+            </article>
+
+            <article class="stat-card">
+              <span class="stat-label">
+                MISSÕES PUBLICADAS
+              </span>
+              <strong id="stat-published">0</strong>
+              <small>Visíveis no portfólio</small>
+              <span class="stat-icon">✓</span>
+            </article>
+
+            <article class="stat-card">
+              <span class="stat-label">
+                EM PREPARAÇÃO
+              </span>
+              <strong id="stat-drafts">0</strong>
+              <small>Projetos em rascunho</small>
+              <span class="stat-icon">◷</span>
+            </article>
+
+            <article class="stat-card">
+              <span class="stat-label">
+                MENSAGENS
+              </span>
+              <strong id="stat-messages">0</strong>
+              <small>Contatos recebidos</small>
+              <span class="stat-icon">✉</span>
+            </article>
+
+          </div>
+
+          <!-- PAINÉIS INFERIORES -->
+          <div class="dashboard-bottom">
+
+            <section class="panel-card">
+
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-eyebrow">
+                    ATIVIDADE
+                  </span>
+                  <h3>Últimas Missões</h3>
+                </div>
+
+                <button
+                  class="small-red-button"
+                  type="button"
+                  data-go="missions"
+                >
+                  Ver todas →
+                </button>
+              </div>
+
+              <div
+                id="recent-missions"
+                class="empty-state"
+              >
+                <span>⚔</span>
+                <strong>
+                  Nenhuma missão cadastrada
+                </strong>
+                <p>
+                  Seus projetos aparecerão aqui quando
+                  conectarmos o sistema.
+                </p>
+              </div>
+
+            </section>
+
+            <section class="panel-card quick-actions">
+
+              <div class="panel-heading">
+                <div>
+                  <span class="panel-eyebrow">
+                    ACESSO RÁPIDO
+                  </span>
+                  <h3>Comandos do QG</h3>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="quick-action"
+                data-go="new-mission"
+              >
+                <span>✚</span>
+                <div>
+                  <strong>Nova Missão</strong>
+                  <small>Cadastrar um novo projeto</small>
+                </div>
+                <b>→</b>
+              </button>
+
+              <button
+                type="button"
+                class="quick-action"
+                data-go="missions"
+              >
+                <span>▣</span>
+                <div>
+                  <strong>Gerenciar Missões</strong>
+                  <small>Consultar projetos cadastrados</small>
+                </div>
+                <b>→</b>
+              </button>
+
+              <a
+                href="index.html#projetos"
+                class="quick-action"
+              >
+                <span>↗</span>
+                <div>
+                  <strong>Ver Portfólio</strong>
+                  <small>Abrir projetos no site</small>
+                </div>
+                <b>→</b>
+              </a>
+
+            </section>
+
+          </div>
+        </section>
+
+        <!-- MISSÕES -->
+        <section
+          id="view-missions"
+          class="admin-view"
+          hidden
+        >
+
+          <div class="view-heading">
+            <div>
+              <span class="panel-eyebrow">
+                GERENCIAMENTO
+              </span>
+              <h2>MISSÕES</h2>
+              <p>
+                Todos os projetos cadastrados no sistema.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="small-red-button"
+              data-go="new-mission"
+            >
+              + Nova Missão
+            </button>
+          </div>
+
+          <div class="panel-card">
+            <div
+              id="missions-list"
+              class="empty-state"
+            >
+              <span>⚔</span>
+              <strong>
+                Nenhuma missão cadastrada
+              </strong>
+              <p>
+                O cadastro será ativado quando conectarmos
+                o servidor e o banco de dados.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- NOVA MISSÃO -->
+        <section
+          id="view-new-mission"
+          class="admin-view"
+          hidden
+        >
+
+          <div class="view-heading">
+            <div>
+              <span class="panel-eyebrow">
+                CADASTRO
+              </span>
+              <h2>NOVA MISSÃO</h2>
+              <p>
+                Prepare um novo projeto para o portfólio.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+
+            <div class="form-notice">
+              Interface demonstrativa. O salvamento será
+              ativado na integração com o servidor.
+            </div>
+
+            <form id="mission-form" class="mission-form">
+
+              <div class="form-group">
+                <label for="mission-title">
+                  Nome do projeto
+                </label>
+                <input
+                  type="text"
+                  id="mission-title"
+                  placeholder="Ex.: Meu novo website"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mission-category">
+                  Categoria
+                </label>
+                <select id="mission-category" required>
+                  <option value="">
+                    Selecione uma categoria
+                  </option>
+                  <option value="web">Website</option>
+                  <option value="sistemas">Sistema</option>
+                  <option value="gamer">Gamer</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="mission-description">
+                  Descrição
+                </label>
+                <textarea
+                  id="mission-description"
+                  rows="5"
+                  placeholder="Descreva seu projeto..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="mission-technologies">
+                  Tecnologias
+                </label>
+                <input
+                  type="text"
+                  id="mission-technologies"
+                  placeholder="HTML, CSS, JavaScript"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mission-image">
+                  Imagem do projeto (URL)
+                </label>
+                <input
+                  type="url"
+                  id="mission-image"
+                  placeholder="https://exemplo.com/imagem.png"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mission-website">
+                  Link do site
+                </label>
+                <input
+                  type="url"
+                  id="mission-website"
+                  placeholder="https://meusite.com"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mission-github">
+                  Link do GitHub
+                </label>
+                <input
+                  type="url"
+                  id="mission-github"
+                  placeholder="https://github.com/usuario/projeto"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="mission-status">
+                  Status
+                </label>
+                <select id="mission-status">
+                  <option value="draft">Rascunho</option>
+                  <option value="published">Publicado</option>
+                </select>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  class="login-button"
+                  disabled
+                >
+                  Salvar Missão
+                </button>
+                <small>
+                  Disponível após a integração do banco de dados.
+                </small>
+              </div>
+
+            </form>
+          </div>
+        </section>
+
+        <!-- MENSAGENS -->
+        <section
+          id="view-messages"
+          class="admin-view"
+          hidden
+        >
+
+          <div class="view-heading">
+            <div>
+              <span class="panel-eyebrow">
+                COMUNICAÇÃO
+              </span>
+              <h2>MENSAGENS</h2>
+              <p>
+                Contatos enviados pelo seu site.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="empty-state">
+              <span>✉</span>
+              <strong>
+                Caixa de entrada em preparação
+              </strong>
+              <p>
+                Aqui aparecerão as mensagens quando
+                implementarmos o formulário de contato.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- CONFIGURAÇÕES -->
+        <section
+          id="view-settings"
+          class="admin-view"
+          hidden
+        >
+
+          <div class="view-heading">
+            <div>
+              <span class="panel-eyebrow">
+                SISTEMA
+              </span>
+              <h2>CONFIGURAÇÕES</h2>
+              <p>
+                Gerenciamento e segurança do QG.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="empty-state">
+              <span>⚙</span>
+              <strong>
+                Configurações em preparação
+              </strong>
+              <p>
+                As opções de conta e segurança serão
+                adicionadas posteriormente.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1846 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   TEMA GAMER NEON - BLACK CLOVER
+========================================== */
+
+:root {
+  --black: #050506;
+  --black-soft: #10080b;
+  --red: #ef001d;
+  --red-light: #ff263c;
+  --white: #f6f5f5;
+  --gray: #bcb7bb;
+  --border: rgba(255, 255, 255, 0.12);
+  --font: "Inter", Arial, sans-serif;
+  --title-font: "Rajdhani", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(90%, 1320px);
+  margin-inline: auto;
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red-light);
+  outline-offset: 4px;
+}
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.header {
+  position: relative;
+  z-index: 100;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.97)
+    ),
+    url("../assets/fundo-banner.png") center / cover;
+  border-bottom: 1px solid rgba(239, 0, 29, 0.18);
+}
+
+.navbar {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-width: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  color: var(--red);
+  font-size: 49px;
+  line-height: 1;
+  text-shadow: 0 0 15px rgba(255, 0, 30, 0.35);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.85;
+}
+
+.logo-text small {
+  margin-top: 12px;
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.7vw, 40px);
+}
+
+.nav-links > a:not(.admin-btn) {
+  position: relative;
+  padding: 13px 0;
+  font-size: 14px;
+  font-weight: 800;
+  transition: color 0.25s;
+}
+
+.nav-links > a:not(.admin-btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 0;
+  height: 3px;
+  background: var(--red);
+  box-shadow: 0 0 12px var(--red);
+  transition: width 0.25s;
+}
+
+.nav-links > a:not(.admin-btn):hover,
+.nav-links > .nav-active {
+  color: var(--red-light);
+}
+
+.nav-links > a:not(.admin-btn):hover::after,
+.nav-links > .nav-active::after {
+  width: 100%;
+}
+
+.admin-btn {
+  padding: 12px 17px;
+  border: 1px solid var(--red);
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 0 15px rgba(239, 0, 29, 0.2);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.admin-btn:hover {
+  background: var(--red);
+  box-shadow: 0 0 25px rgba(239, 0, 29, 0.5);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--red);
+  border-radius: 7px;
+  background: #140609;
+  touch-action: manipulation;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ==========================================
+   BANNER PRINCIPAL - GAMER NEON
+========================================== */
+
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  background: #050506;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.34) 0%,
+      rgba(0, 0, 0, 0.16) 55%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    url("../assets/fundo-banner.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 42% 72% at 77% 52%,
+      rgba(255, 0, 38, 0.26),
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 34% 48% at 28% 56%,
+      rgba(124, 0, 20, 0.12),
+      transparent 85%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.46),
+      rgba(0, 0, 0, 0.08) 70%
+    );
+  animation: astaAtmosphere 6s ease-in-out infinite alternate;
+}
+
+/* MOLDURA NEON */
+
+.hero-frame {
+  position: absolute;
+  z-index: 3;
+  inset: 12px 22px 15px;
+  border: 1px solid rgba(255, 29, 56, 0.65);
+  box-shadow:
+    inset 0 0 25px rgba(255, 0, 35, 0.045),
+    0 0 12px rgba(255, 0, 35, 0.12);
+  pointer-events: none;
+  animation: astaFramePulse 5s ease-in-out infinite alternate;
+}
+
+.frame-corner {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border: 5px solid var(--red);
+  filter: drop-shadow(0 0 9px rgba(255, 0, 38, 0.8));
+}
+
+.top-left {
+  top: -2px;
+  left: -2px;
+  border-right: 0;
+  border-bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.top-right {
+  top: -2px;
+  right: -2px;
+  border-left: 0;
+  border-bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-right: 0;
+  border-top: 0;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-left: 0;
+  border-top: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* CONTEÚDO DO BANNER */
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  min-height: 520px;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: clamp(18px, 2.5vw, 44px);
+  padding-top: 38px;
+  padding-bottom: 40px;
+  min-width: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  min-width: 0;
+  padding-left: 4px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 8px 15px;
+  border: 1px solid var(--red);
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.78);
+  box-shadow: 0 0 15px rgba(255, 0, 30, 0.35);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-family: "Arial Black", "Inter", sans-serif;
+  font-size: clamp(90px, 9vw, 145px);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -7px;
+  line-height: 0.82;
+  color: #f5f5f5;
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px 0 #a3a0a0,
+    4px 5px 0 rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.7));
+}
+
+.hero-title span {
+  display: block;
+  margin-top: 17px;
+  font-family: "Arial Black", "Inter", sans-serif;
+  font-size: clamp(52px, 5.6vw, 88px);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -5px;
+  line-height: 1.04;
+  white-space: nowrap;
+  color: #f00016;
+  text-shadow:
+    2px 3px 0 #620009,
+    0 0 14px rgba(255, 0, 38, 0.6),
+    0 0 42px rgba(255, 0, 38, 0.27);
+  animation: astaTitleCharge 4.5s ease-in-out infinite alternate;
+}
+
+.hero-description {
+  max-width: 530px;
+  margin-top: 24px;
+  color: #f3eef0;
+  font-size: 16px;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+/* BOTÕES NEON */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 49px;
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    transform 0.3s,
+    background 0.3s,
+    box-shadow 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f00020, #990012);
+  border-color: #ff3549;
+  box-shadow:
+    0 0 12px rgba(255, 0, 25, 0.75),
+    0 0 25px rgba(255, 0, 25, 0.28),
+    inset 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 0 20px rgba(255, 0, 25, 0.9),
+    0 0 45px rgba(255, 0, 25, 0.5);
+}
+
+.btn-outline {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-outline:hover {
+  border-color: var(--red);
+  background: rgba(239, 0, 29, 0.15);
+}
+
+.hero-actions .btn-primary {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 15px rgba(255, 0, 37, 0.55),
+    0 0 32px rgba(255, 0, 37, 0.22);
+}
+
+.hero-actions .btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.24) 48%,
+    transparent 70%
+  );
+  transform: translateX(-140%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.hero-actions .btn-primary:hover::before {
+  transform: translateX(140%);
+}
+
+.hero-actions .btn-outline:hover {
+  box-shadow:
+    0 0 18px rgba(255, 0, 38, 0.22),
+    inset 0 0 15px rgba(255, 0, 38, 0.08);
+}
+
+/* DIFERENCIAIS */
+
+.hero-features {
+  display: flex;
+  margin-top: 32px;
+}
+
+.feature {
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 22px;
+}
+
+.feature:first-child {
+  padding-left: 0;
+}
+
+.feature + .feature {
+  border-left: 2px solid var(--red);
+}
+
+.feature strong {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.feature span {
+  color: #eae7e8;
+  font-size: 13px;
+}
+
+/* ==========================================
+   PERSONAGEM ASTA - AURA GAMER
+========================================== */
+
+.hero-visual {
+  position: relative;
+  height: 475px;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 25deg,
+    transparent 0 22%,
+    rgba(255, 12, 46, 0.23) 30%,
+    transparent 40% 64%,
+    rgba(255, 0, 33, 0.32) 72%,
+    transparent 84%
+  );
+  filter: blur(22px);
+  animation: astaEnergySpin 15s linear infinite;
+  pointer-events: none;
+}
+
+.visual-glow {
+  position: absolute;
+  z-index: 0;
+  left: 12%;
+  bottom: 8%;
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 32, 0.44) 0%,
+    rgba(160, 0, 26, 0.24) 38%,
+    transparent 72%
+  );
+  filter: blur(38px);
+  animation: astaAura 3.8s ease-in-out infinite alternate;
+}
+
+.hero-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter:
+    contrast(1.13)
+    drop-shadow(0 0 12px rgba(255, 0, 36, 0.46))
+    drop-shadow(0 0 30px rgba(255, 0, 36, 0.2));
+  animation: imageFloat 7s ease-in-out infinite;
+}
+
+/* ELEMENTOS FLUTUANTES */
+
+.visual-code,
+.visual-binary,
+.visual-laptop,
+.visual-game {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.visual-code {
+  top: 25%;
+  left: -4%;
+  color: #f4dfe3;
+  font-family: monospace;
+  font-size: 47px;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(239, 0, 29, 0.35);
+  animation: astaFloatCode 5s ease-in-out infinite;
+}
+
+.visual-binary {
+  top: 6%;
+  right: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  line-height: 1.8;
+  text-shadow: 0 0 12px rgba(255, 36, 65, 0.35);
+}
+
+.visual-laptop {
+  left: -4%;
+  bottom: 28%;
+  width: 100px;
+  height: 85px;
+  color: #e6cbd0;
+  transform: rotate(12deg);
+  filter: drop-shadow(0 0 5px rgba(255, 0, 30, 0.4));
+  animation: astaFloatLaptop 6s ease-in-out infinite;
+}
+
+.visual-game {
+  top: 40%;
+  right: -1%;
+  width: 108px;
+  height: 75px;
+  color: #f3cbd2;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 0 5px rgba(255, 0, 30, 0.5));
+  animation: astaFloatGame 5.4s ease-in-out infinite;
+}
+
+/* LOGOTIPO ABAIXO DO ASTA */
+
+.character-brand {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.character-brand strong {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(65px, 7.5vw, 110px);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -8px;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #eee;
+  background-image:
+    repeating-linear-gradient(
+      155deg,
+      transparent 0px,
+      transparent 8px,
+      rgba(38, 38, 38, 0.8) 9px,
+      transparent 11px
+    ),
+    repeating-linear-gradient(
+      25deg,
+      transparent 0px,
+      transparent 22px,
+      rgba(105, 0, 10, 0.7) 23px,
+      transparent 25px
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f5f5f5 30%,
+      #c5c5c5 68%,
+      #898989 100%
+    );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(3px 3px 0 #580009)
+    drop-shadow(0 0 10px rgba(255, 0, 30, 0.4));
+}
+
+.character-brand strong::before,
+.character-brand strong::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  z-index: -1;
+  width: 45%;
+  height: 8px;
+  border-top: 3px solid #ff1732;
+  border-bottom: 1px solid #900012;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 30, 0.65)
+  );
+  filter: drop-shadow(0 0 5px rgba(255, 0, 30, 0.6));
+}
+
+.character-brand strong::before {
+  right: 80%;
+  transform: skewY(-8deg);
+}
+
+.character-brand strong::after {
+  left: 80%;
+  transform: skewY(8deg) scaleX(-1);
+}
+
+.character-brand span {
+  display: block;
+  margin-top: 9px;
+  padding: 4px 12px;
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 7px;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(255, 0, 30, 0.6);
+}
+
+/* SETA NEON */
+
+.hero-down {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 46px;
+  border: 1px solid var(--red);
+  border-radius: 12px 12px 0 0;
+  background: #150307;
+  box-shadow:
+    0 0 16px rgba(255, 0, 38, 0.6),
+    0 0 34px rgba(255, 0, 38, 0.2);
+  font-size: 35px;
+  line-height: 1;
+}
+
+/* ==========================================
+   SEÇÕES GERAIS
+========================================== */
+
+.section {
+  position: relative;
+  padding: 95px 0;
+}
+
+.section-label {
+  display: inline-block;
+  margin-bottom: 13px;
+  color: var(--red-light);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.section-title {
+  font-family: var(--font);
+  font-size: clamp(38px, 4vw, 56px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.section-title span {
+  color: var(--red);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 40px;
+  min-width: 0;
+}
+
+.section-heading > * {
+  min-width: 0;
+}
+
+.section-heading > p {
+  max-width: 360px;
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.section-heading.centered {
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+/* ==========================================
+   SERVIÇOS - CARDS GAMER
+========================================== */
+
+.services-section {
+  padding: 32px 0 80px;
+  border-top: 2px solid rgba(239, 0, 29, 0.6);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(2, 2, 3, 0.96) 0%,
+      rgba(8, 0, 4, 0.83) 28%,
+      rgba(0, 0, 0, 0.88) 100%
+    ),
+    url("../assets/fundo-banner.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.services-section .section-heading {
+  margin-bottom: 27px;
+}
+
+.services-section .section-title {
+  font-size: clamp(35px, 3.5vw, 50px);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.service-card {
+  min-height: 155px;
+  padding: 22px;
+  border: 1px solid var(--red);
+  border-radius: 13px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(65, 0, 10, 0.45),
+      rgba(8, 6, 8, 0.96) 55%
+    );
+  box-shadow: inset 0 0 18px rgba(239, 0, 29, 0.04);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  border-color: #ff3553;
+  box-shadow:
+    0 15px 35px rgba(255, 0, 38, 0.15),
+    inset 0 0 22px rgba(255, 0, 38, 0.07);
+}
+
+.service-icon {
+  display: block;
+  height: 43px;
+  color: var(--red-light);
+  font-family: monospace;
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.service-card h3 {
+  margin-bottom: 7px;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+}
+
+.service-card p {
+  color: #ddd8da;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ==========================================
+   SOBRE
+========================================== */
+
+.about-section {
+  background: #0b080b;
+  border-top: 1px solid var(--border);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+  min-width: 0;
+}
+
+.about-grid > * {
+  min-width: 0;
+}
+
+.about-description p {
+  margin-bottom: 16px;
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--red);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.text-link:hover {
+  color: var(--red-light);
+}
+
+/* ==========================================
+   PORTFÓLIO
+========================================== */
+
+.projects-section {
+  background: #070608;
+  border-top: 1px solid var(--border);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.projects-empty {
+  grid-column: 1 / -1;
+  min-height: 250px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(239, 0, 29, 0.5);
+  border-radius: 12px;
+  background: rgba(239, 0, 29, 0.035);
+  text-align: center;
+}
+
+.projects-empty > span {
+  color: var(--red);
+  font-size: 42px;
+}
+
+.projects-empty h3 {
+  font-family: var(--title-font);
+  font-size: 30px;
+}
+
+.projects-empty p {
+  margin-top: 8px;
+  color: var(--gray);
+  font-size: 13px;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid rgba(239, 0, 29, 0.35);
+  border-radius: 12px;
+  background: #130d11;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--red);
+}
+
+.project-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 23px;
+}
+
+.project-content h3 {
+  margin-bottom: 10px;
+  font-family: var(--title-font);
+  font-size: 27px;
+}
+
+.project-content p {
+  margin-bottom: 15px;
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.project-tags,
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.project-tags {
+  margin-bottom: 18px;
+}
+
+.project-tags span {
+  padding: 5px 9px;
+  border: 1px solid rgba(239, 0, 29, 0.35);
+  border-radius: 5px;
+  color: #ff9eaa;
+  font-size: 11px;
+}
+
+.project-links a {
+  color: var(--red-light);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ==========================================
+   CONTATO
+========================================== */
+
+.contact-section {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(239, 0, 29, 0.16),
+      transparent 65%
+    ),
+    #070508;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-content h2 {
+  font-family: var(--title-font);
+  font-size: clamp(55px, 8vw, 105px);
+  line-height: 0.9;
+}
+
+.contact-content h2 span {
+  display: block;
+  color: var(--red);
+}
+
+.contact-content > p {
+  max-width: 550px;
+  margin: 28px 0;
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact-note {
+  margin-top: 18px;
+  color: #aaa0a5;
+  font-size: 11px;
+}
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+.footer {
+  padding: 28px 0;
+  background: #030304;
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+
+.footer-brand {
+  font-family: var(--title-font);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.footer-brand span {
+  color: var(--red);
+  font-size: 27px;
+}
+
+.footer-content p {
+  color: #a29a9f;
+  font-size: 11px;
+}
+
+.back-top {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.back-top:hover {
+  color: var(--red-light);
+}
+
+/* ==========================================
+   ANIMAÇÕES ORIGINAIS
+========================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes glowPulse {
+  from {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* REVELAÇÃO AO ROLAR */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   ANIMAÇÕES GAMER NEON
+========================================== */
+
+@keyframes astaAtmosphere {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes astaTitleCharge {
+  from {
+    text-shadow:
+      2px 3px 0 #620009,
+      0 0 12px rgba(255, 0, 38, 0.48),
+      0 0 28px rgba(255, 0, 38, 0.2);
+  }
+
+  to {
+    text-shadow:
+      2px 3px 0 #620009,
+      0 0 19px rgba(255, 0, 38, 0.78),
+      0 0 48px rgba(255, 0, 38, 0.35);
+  }
+}
+
+@keyframes astaEnergySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes astaAura {
+  from {
+    opacity: 0.65;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.13);
+  }
+}
+
+@keyframes astaFramePulse {
+  from {
+    box-shadow:
+      inset 0 0 15px rgba(255, 0, 35, 0.025),
+      0 0 6px rgba(255, 0, 35, 0.1);
+  }
+
+  to {
+    box-shadow:
+      inset 0 0 25px rgba(255, 0, 35, 0.065),
+      0 0 15px rgba(255, 0, 35, 0.24);
+  }
+}
+
+@keyframes astaFloatCode {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes astaFloatLaptop {
+  0%, 100% {
+    transform: translateY(0) rotate(12deg);
+  }
+
+  50% {
+    transform: translateY(-11px) rotate(9deg);
+  }
+}
+
+@keyframes astaFloatGame {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateY(-13px) rotate(-4deg);
+  }
+}
+
+/* ==========================================
+   NOTEBOOKS
+========================================== */
+
+@media (max-width: 1200px) {
+  .nav-links {
+    gap: 17px;
+  }
+
+  .nav-links > a:not(.admin-btn) {
+    font-size: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(85px, 9vw, 120px);
+  }
+
+  .hero-title span {
+    font-size: clamp(47px, 5.4vw, 75px);
+  }
+
+  .hero-visual {
+    height: 430px;
+  }
+
+  .character-brand strong {
+    font-size: 75px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .navbar {
+    gap: 14px;
+  }
+
+  .logo-text {
+    font-size: 32px;
+  }
+
+  .logo-text small {
+    letter-spacing: 3px;
+  }
+
+  .nav-links {
+    gap: 13px;
+  }
+
+  .nav-links > a:not(.admin-btn) {
+    font-size: 11px;
+  }
+
+  .admin-btn {
+    padding: 10px 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(74px, 8vw, 108px);
+  }
+
+  .hero-title span {
+    font-size: clamp(42px, 5vw, 66px);
+  }
+}
+
+/* ==========================================
+   TABLETS E MENU MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+  .navbar {
+    min-height: 74px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    position: relative;
+    z-index: 102;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 15px 5% 25px;
+    background: rgba(5, 5, 7, 0.98);
+    border-bottom: 1px solid var(--red);
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition:
+      opacity 0.3s,
+      transform 0.3s,
+      visibility 0.3s;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-links > a:not(.admin-btn) {
+    min-height: 48px;
+    padding: 15px 5px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .admin-btn {
+    align-self: flex-start;
+    min-height: 44px;
+    margin-top: 18px;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+    padding-top: 60px;
+    padding-bottom: 65px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(90px, 14vw, 135px);
+  }
+
+  .hero-title span {
+    font-size: clamp(48px, 7.7vw, 78px);
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions,
+  .hero-features {
+    justify-content: center;
+  }
+
+  .hero-features {
+    flex-wrap: wrap;
+    row-gap: 15px;
+  }
+
+  .hero-visual {
+    width: min(100%, 590px);
+    height: 460px;
+    margin: 10px auto 0;
+  }
+
+  .visual-code {
+    left: 0;
+  }
+
+  .visual-laptop {
+    left: 1%;
+  }
+
+  .character-brand strong {
+    font-size: 85px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================
+   CELULARES
+========================================== */
+
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 75px;
+  }
+
+  .container {
+    width: min(90%, 520px);
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .navbar {
+    gap: 10px;
+  }
+
+  .logo {
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .logo-icon {
+    font-size: 35px;
+  }
+
+  .logo-text {
+    font-size: clamp(23px, 7vw, 29px);
+  }
+
+  .logo-text small {
+    margin-top: 9px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+  }
+
+  .hero-frame {
+    inset: 9px 8px 14px;
+  }
+
+  .frame-corner {
+    width: 26px;
+    height: 26px;
+    border-width: 3px;
+  }
+
+  .hero-grid {
+    width: min(88%, 500px);
+    gap: 14px;
+    padding-top: 50px;
+    padding-bottom: 72px;
+  }
+
+  .hero-content {
+    padding-left: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 24px;
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-title {
+    font-size: clamp(60px, 18vw, 100px);
+    letter-spacing: -0.055em;
+  }
+
+  .hero-title span {
+    margin-top: 14px;
+    font-size: clamp(29px, 8.2vw, 50px);
+    letter-spacing: -0.05em;
+    white-space: normal;
+  }
+
+  .hero-description {
+    max-width: 42ch;
+    margin-top: 22px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    gap: 12px;
+    margin-top: 24px;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .btn {
+    min-height: 46px;
+    padding: 11px 15px;
+    font-size: 12px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 135px;
+    max-width: 230px;
+  }
+
+  .hero-features {
+    margin-top: 32px;
+    justify-content: center;
+    gap: 12px 0;
+  }
+
+  .feature {
+    min-width: 0;
+    flex: 0 1 auto;
+    padding: 0 10px;
+  }
+
+  .feature strong {
+    font-size: 15px;
+  }
+
+  .feature span {
+    font-size: 10px;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 430px;
+    height: clamp(270px, 84vw, 350px);
+    margin-top: 12px;
+  }
+
+  .visual-code {
+    top: 23%;
+    left: 2%;
+    font-size: 27px;
+  }
+
+  .visual-binary {
+    right: 2%;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .visual-laptop {
+    width: 60px;
+    height: 55px;
+    bottom: 30%;
+  }
+
+  .visual-game {
+    right: 0;
+    width: 65px;
+    height: 50px;
+  }
+
+  .character-brand {
+    width: 98%;
+  }
+
+  .character-brand strong {
+    font-size: clamp(45px, 14vw, 60px);
+    letter-spacing: -5px;
+  }
+
+  .character-brand strong::before,
+  .character-brand strong::after {
+    width: 25%;
+    height: 5px;
+  }
+
+  .character-brand span {
+    max-width: 100%;
+    margin-top: 7px;
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .services-section {
+    padding: 40px 0 65px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .section-title {
+    font-size: clamp(33px, 9vw, 48px);
+    overflow-wrap: break-word;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .service-card {
+    min-height: 145px;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .section-heading.centered {
+    align-items: center;
+  }
+
+  .section-heading > p {
+    max-width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content h2 {
+    font-size: clamp(48px, 12vw, 70px);
+    overflow-wrap: anywhere;
+  }
+
+  .contact-content > p {
+    font-size: 13px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 14px;
+    padding-inline: 4px;
+    text-align: center;
+  }
+}
+
+/* ==========================================
+   CELULARES PEQUENOS
+========================================== */
+
+@media (max-width: 380px) {
+  .hero-grid {
+    width: 88%;
+  }
+
+  .hero-title {
+    font-size: clamp(56px, 17.5vw, 68px);
+  }
+
+  .hero-title span {
+    font-size: clamp(27px, 8.2vw, 34px);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-features {
+    flex-wrap: wrap;
+  }
+
+  .feature {
+    padding: 0 8px;
+  }
+
+  .feature strong {
+    font-size: 13px;
+  }
+
+  .feature span {
+    font-size: 9px;
+  }
+
+  .hero-visual {
+    height: 290px;
+  }
+
+  .character-brand strong {
+    font-size: clamp(42px, 12vw, 47px);
+    letter-spacing: -4px;
+  }
+
+  .character-brand span {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+}
+
+/* ==========================================
+   AJUSTES GERAIS
+========================================== */
+
+.hero-description,
+.about-description,
+.section-heading > p,
+.service-card p,
+.contact-content > p {
+  overflow-wrap: break-word;
+}
+
+.menu-toggle,
+.back-top,
+.hero-down {
+  touch-action: manipulation;
+}
+
+/* ==========================================
+   DISPOSITIVOS COM TOQUE
+========================================== */
+
+@media (hover: none) {
+  .service-card:hover,
+  .project-card:hover,
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-content,
+  .hero-image,
+  .visual-glow,
+  .hero::after,
+  .hero-title span,
+  .hero-visual::before,
+  .hero-frame,
+  .visual-code,
+  .visual-laptop,
+  .visual-game {
+    animation: none !important;
+  }
+
+  .hero-actions .btn-primary::before {
+    transition: none !important;
+  }
+}
+
+/* ==========================================
+   FIM - ASTA WEB STUDIO GAMER NEON
+========================================== */

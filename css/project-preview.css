@@ -1,0 +1,215 @@
+
+/* ==========================================
+   ASTA WEB STUDIO — PROJECT PREVIEW
+========================================== */
+
+.asta-mission-card > img {
+  cursor: zoom-in;
+  transition: transform .3s ease, filter .3s ease;
+}
+
+.asta-mission-card > img:hover {
+  filter: brightness(1.12);
+}
+
+.asta-mission-card > img:focus-visible {
+  outline: 3px solid #ff315c;
+  outline-offset: 3px;
+}
+
+/* MODAL */
+
+.project-preview-modal[hidden] {
+  display: none !important;
+}
+
+.project-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.project-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .88);
+  backdrop-filter: blur(12px);
+}
+
+/* JANELA */
+
+.project-preview-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: #191b24;
+  border: 1px solid #373a47;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 90px #000b;
+  animation: previewAppear .25s ease;
+}
+
+@keyframes previewAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* CABEÇALHO */
+
+.project-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 25px;
+  border-bottom: 1px solid #30323e;
+}
+
+.project-preview-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ff315c;
+}
+
+.project-preview-header h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.project-preview-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #414451;
+  border-radius: 11px;
+  background: #252733;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.project-preview-close:hover {
+  background: #e5254c;
+  border-color: #e5254c;
+}
+
+/* CAPTURA */
+
+.project-preview-image-container {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #0c0d12;
+  text-align: center;
+}
+
+.project-preview-image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* RODAPÉ */
+
+.project-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 25px;
+  border-top: 1px solid #30323e;
+  background: #191b24;
+}
+
+.project-preview-footer span {
+  color: #9296a5;
+  font-size: 12px;
+}
+
+.project-preview-footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 9px;
+  background: #e5254c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.project-preview-footer a:hover {
+  background: #ff4268;
+}
+
+.project-preview-footer a[hidden] {
+  display: none;
+}
+
+body.project-preview-open {
+  overflow: hidden;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+  .project-preview-modal {
+    padding: 10px;
+  }
+
+  .project-preview-dialog {
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+
+  .project-preview-header {
+    padding: 15px;
+  }
+
+  .project-preview-header h2 {
+    font-size: 17px;
+  }
+
+  .project-preview-footer {
+    padding: 14px;
+    flex-wrap: wrap;
+  }
+
+  .project-preview-footer a {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-dialog {
+    animation: none;
+  }
+}

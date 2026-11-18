@@ -1,0 +1,560 @@
+
+/* ==========================================
+   ASTA WEB STUDIO
+   EDITOR EXECUTIVO DE PROJETOS
+   ========================================== */
+
+#view-new-mission {
+  --ex-bg: #101116;
+  --ex-card: #1b1d24;
+  --ex-input: #111319;
+  --ex-border: #343844;
+  --ex-text: #f5f6fa;
+  --ex-muted: #999eac;
+  --ex-red: var(--red, #ff174c);
+
+  color: var(--ex-text);
+}
+
+/* CABEÇALHO */
+
+#view-new-mission .executive-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+#view-new-mission .executive-breadcrumb {
+  display: block;
+  color: #9a9eac;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+#view-new-mission .executive-heading h1 {
+  margin: 0 0 9px;
+  font-size: clamp(23px, 2.5vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+#view-new-mission .executive-heading p {
+  margin: 0;
+  color: var(--ex-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+#view-new-mission .executive-heading-status {
+  flex-shrink: 0;
+  padding: 9px 13px;
+  border: 1px solid #383b46;
+  border-radius: 7px;
+  background: #1c1e26;
+  color: #c2c5d0;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* IMPORTAÇÃO AUTOMÁTICA */
+
+#view-new-mission .executive-import {
+  padding: 23px 25px;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #20212a, #191b22);
+  border: 1px solid #353944;
+  border-radius: 13px;
+}
+
+#view-new-mission .executive-import-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+#view-new-mission .executive-section-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #3c202c;
+  color: var(--ex-red);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+#view-new-mission .executive-import-heading h2 {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+#view-new-mission .executive-import-heading p {
+  margin: 0;
+  color: var(--ex-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+#view-new-mission .executive-optional {
+  margin-left: auto;
+  color: #8e93a1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+#view-new-mission .executive-quick-form {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+}
+
+#view-new-mission .executive-quick-input {
+  flex: 1;
+  min-width: 0;
+}
+
+#view-new-mission .executive-quick-input label {
+  display: block;
+  margin-bottom: 9px;
+  color: #d6d9e2;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#view-new-mission .executive-quick-input input {
+  width: 100%;
+  min-height: 47px;
+  padding: 13px 15px;
+  border: 1px solid #3b3f4b;
+  border-radius: 9px;
+  background: #111319;
+  color: #fff;
+}
+
+#view-new-mission .executive-import-button {
+  min-height: 47px;
+  padding: 0 20px;
+  border-radius: 9px;
+  white-space: nowrap;
+  font-weight: 800;
+}
+
+#quick-project-feedback {
+  margin: 12px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+#quick-project-feedback:empty {
+  display: none;
+}
+
+/* FORMULÁRIO PRINCIPAL */
+
+#view-new-mission .executive-form {
+  display: block;
+}
+
+#view-new-mission .executive-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(290px, 1fr);
+  align-items: start;
+  gap: 25px;
+}
+
+#view-new-mission .executive-left,
+#view-new-mission .executive-right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* SEÇÕES */
+
+#view-new-mission .executive-section {
+  padding: 4px 0;
+}
+
+#view-new-mission .executive-links-section {
+  padding-top: 24px;
+  border-top: 1px solid #343844;
+}
+
+#view-new-mission .executive-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+#view-new-mission .executive-heading-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--ex-red);
+  box-shadow: 0 0 10px #ff174c30;
+}
+
+#view-new-mission .executive-section-heading h2 {
+  margin: 0 0 6px;
+  color: #f5f6fa;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+#view-new-mission .executive-section-heading p {
+  margin: 0;
+  color: #9196a4;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+#view-new-mission .executive-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CAMPOS */
+
+#view-new-mission .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+#view-new-mission .form-group label {
+  color: #dce0e8;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+#view-new-mission .form-group input,
+#view-new-mission .form-group select,
+#view-new-mission .form-group textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #383d49;
+  border-radius: 9px;
+  background: #15171e;
+  color: #f5f6fa;
+  padding: 13px 14px;
+  font-size: 12px;
+  outline: none;
+  transition:
+    border-color .2s,
+    box-shadow .2s,
+    background .2s;
+}
+
+#view-new-mission .form-group input,
+#view-new-mission .form-group select {
+  min-height: 46px;
+}
+
+#view-new-mission .form-group textarea {
+  min-height: 145px;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+#view-new-mission input::placeholder,
+#view-new-mission textarea::placeholder {
+  color: #777c8a;
+}
+
+#view-new-mission .form-group input:hover,
+#view-new-mission .form-group select:hover,
+#view-new-mission .form-group textarea:hover {
+  border-color: #565b69;
+}
+
+#view-new-mission input:focus,
+#view-new-mission select:focus,
+#view-new-mission textarea:focus {
+  border-color: var(--ex-red);
+  box-shadow: 0 0 0 3px #ff174c12;
+}
+
+#view-new-mission select {
+  cursor: pointer;
+  color-scheme: dark;
+}
+
+#view-new-mission select option {
+  background: #1b1d24;
+  color: white;
+}
+
+/* COLUNA DIREITA */
+
+#view-new-mission .executive-media,
+#view-new-mission .executive-publishing {
+  padding: 22px;
+  background: #1b1d24;
+  border: 1px solid #353945;
+  border-radius: 13px;
+}
+
+#view-new-mission .executive-preview {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 210px;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 19px;
+  overflow: hidden;
+  border: 1px dashed #55515d;
+  border-radius: 11px;
+  background:
+    radial-gradient(circle at 50% 20%, #40212c33, transparent 60%),
+    #12141b;
+}
+
+#view-new-mission .executive-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}
+
+#view-new-mission .executive-preview img[hidden] {
+  display: none !important;
+}
+
+#view-new-mission .executive-preview-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+#view-new-mission .executive-preview-placeholder[hidden] {
+  display: none !important;
+}
+
+#view-new-mission .executive-preview-symbol {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 13px;
+  background: #39212c;
+  color: var(--ex-red);
+  font-size: 29px;
+}
+
+#view-new-mission .executive-preview-placeholder strong {
+  font-size: 12px;
+  color: #f0f1f6;
+}
+
+#view-new-mission .executive-preview-placeholder small {
+  max-width: 210px;
+  color: #969ba8;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+#view-new-mission .executive-field-hint {
+  color: #9297a5;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* UPLOAD INSERIDO PELO JAVASCRIPT */
+
+#view-new-mission input[type="file"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 8px;
+  border: 1px dashed #4d5260;
+  border-radius: 8px;
+  background: #12141b;
+  color: #a8adba;
+  font-size: 10px;
+}
+
+#view-new-mission input[type="file"]::file-selector-button {
+  margin-right: 10px;
+  padding: 9px 11px;
+  border: 1px solid #494d59;
+  border-radius: 7px;
+  background: #292d37;
+  color: #fff;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+#view-new-mission .executive-image-field button {
+  min-height: 40px;
+  border: 1px solid #593043;
+  border-radius: 8px;
+  background: #38212c;
+  color: #ff9ab2;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+#view-new-mission .executive-image-field button:hover {
+  border-color: var(--ex-red);
+  color: white;
+}
+
+/* PUBLICAÇÃO */
+
+#view-new-mission .executive-status-note {
+  margin: 13px 0 0;
+  padding: 11px 12px;
+  border-radius: 8px;
+  background: #14171d;
+  color: #9ba0ad;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* RODAPÉ */
+
+#view-new-mission .executive-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 30px;
+  padding: 22px 0 5px;
+  border-top: 1px solid #343844;
+}
+
+#view-new-mission .executive-actions strong {
+  display: block;
+  color: #f0f2f7;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+#view-new-mission .executive-actions p {
+  margin: 0;
+  color: #959aa8;
+  font-size: 11px;
+}
+
+#view-new-mission .executive-save {
+  min-width: 180px;
+  min-height: 46px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--ex-red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 8px 22px #ff174c1c;
+  transition: transform .2s, filter .2s;
+}
+
+#view-new-mission .executive-save:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1050px) {
+  #view-new-mission .executive-columns {
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 1fr);
+    gap: 18px;
+  }
+
+  #view-new-mission .executive-media,
+  #view-new-mission .executive-publishing {
+    padding: 17px;
+  }
+}
+
+@media (max-width: 760px) {
+  #view-new-mission .executive-columns {
+    grid-template-columns: 1fr;
+  }
+
+  #view-new-mission .executive-left,
+  #view-new-mission .executive-right {
+    gap: 22px;
+  }
+
+  #view-new-mission .executive-import {
+    padding: 18px;
+  }
+
+  #view-new-mission .executive-heading-status {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  #view-new-mission .executive-heading h1 {
+    font-size: 24px;
+  }
+
+  #view-new-mission .executive-quick-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #view-new-mission .executive-quick-input,
+  #view-new-mission .executive-import-button {
+    width: 100%;
+  }
+
+  #view-new-mission .executive-optional {
+    display: none;
+  }
+
+  #view-new-mission .executive-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #view-new-mission .executive-save {
+    width: 100%;
+  }
+
+  #view-new-mission .executive-media,
+  #view-new-mission .executive-publishing {
+    padding: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #view-new-mission *,
+  #view-new-mission *::before,
+  #view-new-mission *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

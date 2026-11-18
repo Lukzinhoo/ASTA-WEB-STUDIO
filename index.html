@@ -1,0 +1,914 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050506">
+  <meta
+    name="description"
+    content="ASTA WEB STUDIO — Desenvolvimento web, design e experiências digitais."
+  >
+
+  <title>ASTA WEB STUDIO | Design • Code • Create</title>
+
+  <!-- FAVICON PERSONALIZADO -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090d'/%3E%3Cg fill='%23e62249'%3E%3Ccircle cx='22' cy='21' r='11'/%3E%3Ccircle cx='42' cy='21' r='11'/%3E%3Ccircle cx='20' cy='40' r='11'/%3E%3Ccircle cx='44' cy='40' r='11'/%3E%3Ccircle cx='32' cy='12' r='9'/%3E%3C/g%3E%3Cpath d='M32 26V54' stroke='%2309090d' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%2309090d'/%3E%3C/svg%3E"
+  >
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ESTILOS PRINCIPAIS -->
+  <link rel="stylesheet" href="./css/style.css?v=20261109-2">
+  <link rel="stylesheet" href="./css/projects.css?v=20261109-2">
+  <link rel="stylesheet" href="./css/project-previews.css?v=20261109-2">
+  <link rel="stylesheet" href="./css/animations.css?v=20261109-2">
+  <link rel="stylesheet" href="./css/intro.css?v=20261109-2">
+  <link rel="stylesheet" href="./css/portfolio-upgrade.css?v=20261109-2">
+
+  <!-- ESTILOS GAMER -->
+  <link rel="stylesheet" href="./css/servicos-gamer.css?v=2">
+  <link rel="stylesheet" href="./css/sobre-gamer.css?v=1">
+  <link rel="stylesheet" href="./css/portfolio-gamer.css?v=1">
+  <link rel="stylesheet" href="./css/contato-gamer.css?v=1">
+
+  <!-- FORMULÁRIO DE CONTATO -->
+  <link rel="stylesheet" href="./css/formulario-contato.css?v=1">
+
+  <!-- ESTILO DO PORTFÓLIO -->
+  <link rel="stylesheet" href="./css/portfolio-showcase.css?v=2">
+
+  <!-- ESTILO DO WHATSAPP -->
+  <style>
+    .asta-contact-form input[type="tel"] {
+      width: 100%;
+      min-width: 0;
+      font: inherit;
+    }
+
+    .asta-whatsapp-hint {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      color: #aaa2ad;
+      line-height: 1.5;
+    }
+  </style>
+
+  <!-- JAVASCRIPT PRINCIPAL -->
+  <script src="./js/script.js?v=20261117-1" defer></script>
+  <script src="./js/contato.js?v=1" defer></script>
+  <script src="./js/animations.js?v=20261109-2" defer></script>
+
+  <!-- INTRODUÇÃO DO GRIMÓRIO -->
+  <script src="./js/intro.js?v=3" defer></script>
+
+  <!-- DETALHES DOS PROJETOS -->
+  <script src="./js/project-detail-links.js?v=1" defer></script>
+</head>
+
+<body>
+
+  <!-- ======================================
+       CABEÇALHO
+  ======================================= -->
+  <header class="header" id="inicio">
+    <nav
+      class="navbar container"
+      aria-label="Navegação principal"
+    >
+
+      <a
+        href="#inicio"
+        class="logo"
+        aria-label="ASTA WEB STUDIO - Início"
+      >
+        <span class="logo-icon" aria-hidden="true">✿</span>
+
+        <span class="logo-text">
+          ASTA
+          <small>WEB STUDIO</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-controls="nav-links"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="nav-links">
+
+        <a href="#inicio" class="nav-active">
+          Início
+        </a>
+
+        <a href="#sobre">
+          Sobre
+        </a>
+
+        <a href="#projetos">
+          Projetos
+        </a>
+
+        <a href="#servicos">
+          Serviços
+        </a>
+
+        <a href="#contato">
+          Contato
+        </a>
+
+        <a
+          href="admin.html"
+          class="admin-btn"
+          data-sound="magic"
+        >
+          ✿ Área Administrativa ↗
+        </a>
+
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ======================================
+         BANNER PRINCIPAL
+    ======================================= -->
+    <section
+      class="hero"
+      aria-labelledby="hero-title"
+    >
+
+      <div
+        class="hero-frame"
+        aria-hidden="true"
+      >
+        <span class="frame-corner top-left"></span>
+        <span class="frame-corner top-right"></span>
+        <span class="frame-corner bottom-left"></span>
+        <span class="frame-corner bottom-right"></span>
+      </div>
+
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            DESIGN • CODE • CREATE
+          </div>
+
+          <h1
+            id="hero-title"
+            class="hero-title"
+          >
+            ASTA
+            <span>WEB STUDIO</span>
+          </h1>
+
+          <p class="hero-description">
+            Desenvolvimento de sites, sistemas e experiências
+            digitais com design, performance e identidade única.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="#projetos"
+              class="btn btn-primary"
+              data-sound="sword"
+            >
+              <span aria-hidden="true">✿</span>
+              Ver Projetos
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href="#contato"
+              class="btn btn-outline"
+              data-sound="magic"
+            >
+              <span aria-hidden="true">✉</span>
+              Entrar em Contato
+            </a>
+
+          </div>
+
+          <div class="hero-features">
+
+            <div class="feature">
+              <strong>Design</strong>
+              <span>Exclusivo</span>
+            </div>
+
+            <div class="feature">
+              <strong>100%</strong>
+              <span>Responsivo</span>
+            </div>
+
+            <div class="feature">
+              <strong>Suporte</strong>
+              <span>Personalizado</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PERSONAGEM ASTA -->
+        <div class="hero-visual">
+
+          <div
+            class="visual-glow"
+            aria-hidden="true"
+          ></div>
+
+          <img
+            src="./assets/asta-personagem.png"
+            alt="Arte do personagem Asta com trevo vermelho e branco"
+            class="hero-image"
+            fetchpriority="high"
+          >
+
+          <span
+            class="visual-code"
+            aria-hidden="true"
+          >
+            &lt;/&gt;
+          </span>
+
+          <span
+            class="visual-binary"
+            aria-hidden="true"
+          >
+            01010100
+            01100101
+            01100011
+            01101000
+          </span>
+
+          <!-- NOTEBOOK -->
+          <svg
+            class="visual-laptop"
+            viewBox="0 0 100 85"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M19 12H81L88 59H12L19 12Z"/>
+            <path d="M12 65H88L96 77H4L12 65Z"/>
+            <path d="M45 28L34 38L45 48"/>
+            <path d="M55 28L66 38L55 48"/>
+          </svg>
+
+          <!-- CONTROLE GAMER -->
+          <svg
+            class="visual-game"
+            viewBox="0 0 120 80"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M34 18H86C101 18 106 31 112 58C115 71 103 76 94 66L80 52H40L26 66C17 76 5 71 8 58C14 31 19 18 34 18Z"/>
+            <path d="M31 33V51M22 42H40"/>
+            <circle cx="83" cy="35" r="3"/>
+            <circle cx="95" cy="44" r="3"/>
+            <circle cx="72" cy="44" r="3"/>
+          </svg>
+
+          <div
+            class="character-brand"
+            aria-hidden="true"
+          >
+            <strong>ASTA</strong>
+            <span>✿ WEB STUDIO</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <a
+        href="#servicos"
+        class="hero-down"
+        aria-label="Ir para serviços"
+        data-sound="click"
+      >
+        <span aria-hidden="true">⌄</span>
+      </a>
+
+    </section>
+
+    <!-- ======================================
+         SERVIÇOS
+    ======================================= -->
+    <section
+      class="section services-section services-gamer"
+      id="servicos"
+      aria-labelledby="servicos-titulo"
+    >
+
+      <div class="container">
+
+        <div class="section-heading centered">
+
+          <span class="section-label">
+            O QUE FAZEMOS
+          </span>
+
+          <h2
+            class="section-title"
+            id="servicos-titulo"
+          >
+            NOSSOS <span>SERVIÇOS</span>
+          </h2>
+
+        </div>
+
+        <div class="services-grid">
+
+          <!-- SERVIÇO 01 -->
+          <article class="service-card gamer-service-card">
+
+            <div class="service-card-top">
+              <span class="service-number">
+                01 / DEV
+              </span>
+              <span
+                class="service-status"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div
+              class="service-icon-box"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect
+                  x="5"
+                  y="8"
+                  width="38"
+                  height="31"
+                  rx="5"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M5 16H43"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M20 22L14 27L20 32M28 22L34 27L28 32"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <h3>Desenvolvimento Web</h3>
+
+            <p>
+              Sites e sistemas modernos, rápidos e seguros.
+            </p>
+
+            <span
+              class="service-card-bottom"
+              aria-hidden="true"
+            >
+              <span>WEB DEVELOPMENT</span>
+              <span>↗</span>
+            </span>
+
+          </article>
+
+          <!-- SERVIÇO 02 -->
+          <article class="service-card gamer-service-card">
+
+            <div class="service-card-top">
+              <span class="service-number">
+                02 / UI-UX
+              </span>
+              <span
+                class="service-status"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div
+              class="service-icon-box"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect
+                  x="5"
+                  y="7"
+                  width="38"
+                  height="34"
+                  rx="5"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M5 17H43M19 17V41"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M25 25H36M25 31H33"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="2"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <h3>Design e Experiência</h3>
+
+            <p>
+              Interfaces intuitivas e com identidade própria.
+            </p>
+
+            <span
+              class="service-card-bottom"
+              aria-hidden="true"
+            >
+              <span>USER EXPERIENCE</span>
+              <span>↗</span>
+            </span>
+
+          </article>
+
+          <!-- SERVIÇO 03 -->
+          <article class="service-card gamer-service-card">
+
+            <div class="service-card-top">
+              <span class="service-number">
+                03 / GAME
+              </span>
+              <span
+                class="service-status"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div
+              class="service-icon-box"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M13 15H35C40 15 42 19 44 32C45 37 40 40 36 36L31 31H17L12 36C8 40 3 37 4 32C6 19 8 15 13 15Z"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15 21V29M11 25H19"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <circle cx="31" cy="23" r="2" fill="currentColor"/>
+                <circle cx="36" cy="28" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+
+            <h3>Projetos Gamer</h3>
+
+            <p>
+              Sites e soluções voltados ao universo dos games.
+            </p>
+
+            <span
+              class="service-card-bottom"
+              aria-hidden="true"
+            >
+              <span>GAMING PROJECTS</span>
+              <span>↗</span>
+            </span>
+
+          </article>
+
+          <!-- SERVIÇO 04 -->
+          <article class="service-card gamer-service-card">
+
+            <div class="service-card-top">
+              <span class="service-number">
+                04 / CUSTOM
+              </span>
+              <span
+                class="service-status"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div
+              class="service-icon-box"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M24 4L29 17L43 19L32 28L35 42L24 34L13 42L16 28L5 19L19 17L24 4Z"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M24 16V28M18 22H30"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+
+            <h3>Soluções Personalizadas</h3>
+
+            <p>
+              Projetos sob medida para o seu objetivo.
+            </p>
+
+            <span
+              class="service-card-bottom"
+              aria-hidden="true"
+            >
+              <span>CUSTOM SOLUTIONS</span>
+              <span>↗</span>
+            </span>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================
+         SOBRE
+    ======================================= -->
+    <section
+      class="section about-section"
+      id="sobre"
+      aria-labelledby="sobre-titulo"
+    >
+
+      <div class="container about-grid">
+
+        <div>
+
+          <span class="section-label">
+            QUEM SOMOS
+          </span>
+
+          <h2
+            class="section-title"
+            id="sobre-titulo"
+          >
+            CRIATIVIDADE SEM
+            <span>LIMITES.</span>
+          </h2>
+
+        </div>
+
+        <div class="about-description">
+
+          <p>
+            A ASTA WEB STUDIO é dedicada à criação de
+            experiências digitais modernas, funcionais
+            e marcantes.
+          </p>
+
+          <p>
+            Unimos programação, design e criatividade
+            para desenvolver projetos com identidade própria.
+          </p>
+
+          <a
+            href="#contato"
+            class="text-link"
+            data-sound="magic"
+          >
+            Vamos criar algo juntos ↗
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================
+         PORTFÓLIO
+    ======================================= -->
+    <section
+      class="section projects-section"
+      id="projetos"
+      aria-labelledby="projetos-titulo"
+    >
+
+      <div class="container">
+
+        <div class="section-heading projects-heading">
+
+          <div>
+
+            <span class="section-label">
+              NOSSO PORTFÓLIO
+            </span>
+
+            <h2
+              class="section-title"
+              id="projetos-titulo"
+            >
+              PROJETOS
+              <span>EM DESTAQUE.</span>
+            </h2>
+
+          </div>
+
+          <p>
+            Conheça nossas ideias e experiências digitais.
+            Explore diferentes categorias de projetos.
+          </p>
+
+        </div>
+
+        <div class="projects-toolbar">
+
+          <div
+            class="project-filters"
+            role="group"
+            aria-label="Filtrar projetos"
+          >
+
+            <button
+              class="filter-btn active"
+              type="button"
+              data-filter="todos"
+              data-sound="click"
+              aria-pressed="true"
+            >
+              Todos
+            </button>
+
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="web"
+              data-sound="click"
+              aria-pressed="false"
+            >
+              Websites
+            </button>
+
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="sistemas"
+              data-sound="click"
+              aria-pressed="false"
+            >
+              Sistemas
+            </button>
+
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="gamer"
+              data-sound="click"
+              aria-pressed="false"
+            >
+              Gamer
+            </button>
+
+          </div>
+
+          <span
+            class="project-count"
+            id="project-count"
+            aria-live="polite"
+          ></span>
+
+        </div>
+
+        <div
+          class="projects-grid"
+          id="projects-grid"
+          aria-live="polite"
+        ></div>
+
+        <p class="projects-disclaimer">
+          Conheça os projetos desenvolvidos pela ASTA WEB STUDIO.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ======================================
+         CONTATO
+    ======================================= -->
+    <section
+      class="section contact-section"
+      id="contato"
+      aria-labelledby="contato-titulo"
+    >
+
+      <div class="container contact-content">
+
+        <span class="section-label">
+          VAMOS CONVERSAR?
+        </span>
+
+        <h2 id="contato-titulo">
+          SUA IDEIA.
+          <span>NOSSA CRIAÇÃO.</span>
+        </h2>
+
+        <p>
+          Tem um projeto em mente? Vamos transformar
+          sua ideia em uma experiência digital única.
+        </p>
+
+        <!-- FORMULÁRIO DE CONTATO -->
+        <form
+          id="contact-form"
+          class="asta-contact-form"
+          novalidate
+        >
+
+          <div class="asta-contact-grid">
+
+            <label>
+              Seu nome
+
+              <input
+                name="name"
+                type="text"
+                autocomplete="name"
+                maxlength="100"
+                required
+                placeholder="Como podemos chamar você?"
+              >
+            </label>
+
+            <label>
+              Seu e-mail
+
+              <input
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                required
+                placeholder="voce@exemplo.com"
+              >
+            </label>
+
+          </div>
+
+          <!-- WHATSAPP -->
+          <label>
+            Seu WhatsApp (com DDD)
+
+            <input
+              id="contact-whatsapp"
+              name="whatsapp"
+              type="tel"
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="20"
+              pattern="^\+?[0-9()\s-]{10,20}$"
+              required
+              placeholder="(81) 99999-9999"
+              aria-describedby="whatsapp-hint"
+            >
+
+            <small
+              class="asta-whatsapp-hint"
+              id="whatsapp-hint"
+            >
+              Informe seu número com DDD para entrarmos
+              em contato pelo WhatsApp.
+            </small>
+          </label>
+
+          <label>
+            Assunto
+
+            <input
+              name="subject"
+              type="text"
+              maxlength="150"
+              required
+              placeholder="Sobre o que deseja conversar?"
+            >
+          </label>
+
+          <label>
+            Mensagem
+
+            <textarea
+              name="message"
+              rows="6"
+              maxlength="5000"
+              required
+              placeholder="Conte um pouco sobre sua ideia..."
+            ></textarea>
+          </label>
+
+          <div class="asta-contact-actions">
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              ✉ Enviar mensagem →
+            </button>
+
+            <p
+              id="contact-feedback"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================
+       RODAPÉ
+  ======================================= -->
+  <footer class="footer">
+
+    <div class="container footer-content">
+
+      <a
+        href="#inicio"
+        class="footer-brand"
+        data-sound="click"
+      >
+        <span>✿</span>
+        ASTA WEB STUDIO
+      </a>
+
+      <p>
+        © <span id="current-year"></span>
+        ASTA WEB STUDIO.
+      </p>
+
+      <a
+        href="#inicio"
+        class="back-top"
+        data-sound="sword"
+      >
+        Voltar ao topo ↑
+      </a>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1096 @@
+﻿
+"use strict";
+
+// ==========================================
+// ASTA WEB STUDIO — SERVIDOR DO QG
+// ==========================================
+
+const express = require("express");
+const session = require("express-session");
+const SQLiteStore = require("connect-sqlite3")(session);
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const crypto = require("node:crypto");
+const path = require("node:path");
+const fs = require("node:fs");
+
+const db = require("./database");
+const { iniciarCapturas, gerarCaptura } = require("./preview");
+const configurarMensagens = require("./messages");
+
+const app = express();
+const PORT = 3000;
+const ROOT = path.join(__dirname, "..");
+const DATA_DIR = path.join(__dirname, "data");
+
+fs.mkdirSync(DATA_DIR, { recursive: true });
+
+// ==========================================
+// SEGURANÇA
+// ==========================================
+
+const SESSION_SECRET = process.env.SESSION_SECRET;
+
+if (!SESSION_SECRET || SESSION_SECRET.length < 32) {
+  console.error("ERRO: SESSION_SECRET não configurado.");
+  process.exit(1);
+}
+
+app.disable("x-powered-by");
+
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
+
+app.use(express.json({ limit: "10kb" }));
+
+app.use((req, res, next) => {
+  if (!["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
+    return next();
+  }
+
+  const origin = req.get("origin");
+  if (!origin) return next();
+
+  try {
+    const url = new URL(origin);
+
+    if (
+      url.protocol !== "http:" ||
+      url.port !== String(PORT) ||
+      !["127.0.0.1", "localhost"].includes(url.hostname)
+    ) {
+      return res.status(403).json({
+        error: "Origem não autorizada."
+      });
+    }
+  } catch {
+    return res.status(403).json({
+      error: "Origem não autorizada."
+    });
+  }
+
+  next();
+});
+
+// ==========================================
+// SESSÕES
+// ==========================================
+
+app.use(session({
+  name: "asta.sid",
+  secret: SESSION_SECRET,
+  store: new SQLiteStore({
+    db: "sessions.sqlite",
+    dir: DATA_DIR
+  }),
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: false,
+    maxAge: 4 * 60 * 60 * 1000
+  }
+}));
+
+// ==========================================
+// BANCO DE DADOS
+// ==========================================
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS missions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT NOT NULL,
+    technologies TEXT DEFAULT '',
+    image TEXT DEFAULT '',
+    website TEXT DEFAULT '',
+    github TEXT DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'draft',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS admin_settings (
+    admin_id INTEGER PRIMARY KEY,
+    display_name TEXT NOT NULL DEFAULT '',
+    avatar TEXT NOT NULL DEFAULT '',
+    site_name TEXT NOT NULL DEFAULT 'ASTA WEB STUDIO',
+    contact_email TEXT NOT NULL DEFAULT '',
+    whatsapp TEXT NOT NULL DEFAULT '',
+    instagram TEXT NOT NULL DEFAULT '',
+    github TEXT NOT NULL DEFAULT '',
+    notifications INTEGER NOT NULL DEFAULT 1,
+    accent TEXT NOT NULL DEFAULT 'red',
+    FOREIGN KEY(admin_id) REFERENCES admins(id)
+  );
+`);
+
+// ==========================================
+// AUTENTICAÇÃO
+// ==========================================
+
+function verificarSenha(senha, hashSalvo) {
+  try {
+    const [tipo, salt, hash] = hashSalvo.split(":");
+
+    if (tipo !== "scrypt") return false;
+
+    const esperado = Buffer.from(hash, "hex");
+    if (esperado.length !== 64) return false;
+
+    const calculado = crypto.scryptSync(
+      senha,
+      Buffer.from(salt, "hex"),
+      64
+    );
+
+    return crypto.timingSafeEqual(esperado, calculado);
+  } catch {
+    return false;
+  }
+}
+
+function exigirAdmin(req, res, next) {
+  if (!req.session.adminId) {
+    return res.status(401).json({
+      error: "Você precisa fazer login."
+    });
+  }
+
+  const admin = db.prepare(`
+    SELECT id, username
+    FROM admins
+    WHERE id = ?
+  `).get(req.session.adminId);
+
+  if (!admin) {
+    return res.status(401).json({
+      error: "Sessão inválida."
+    });
+  }
+
+  req.admin = admin;
+  next();
+}
+
+// ==========================================
+// MENSAGENS
+// ==========================================
+
+configurarMensagens(app, db, exigirAdmin);
+
+// ==========================================
+// CONFIGURAÇÕES
+// ==========================================
+
+function settingsRow(adminId) {
+  db.prepare(`
+    INSERT OR IGNORE INTO admin_settings (admin_id)
+    VALUES (?)
+  `).run(adminId);
+
+  return db.prepare(`
+    SELECT *
+    FROM admin_settings
+    WHERE admin_id = ?
+  `).get(adminId);
+}
+
+function settingsText(value, max = 500) {
+  if (typeof value !== "string" || value.length > max) {
+    return null;
+  }
+
+  return value.trim();
+}
+
+function safeHttpUrl(value) {
+  if (!value) return true;
+
+  try {
+    return ["http:", "https:"].includes(
+      new URL(value).protocol
+    );
+  } catch {
+    return false;
+  }
+}
+
+// CARREGAR CONFIGURAÇÕES
+
+app.get("/api/admin/settings", exigirAdmin, (req, res) => {
+  const s = settingsRow(req.admin.id);
+
+  res.json({
+    settings: {
+      username: req.admin.username,
+      display_name: s.display_name,
+      avatar: s.avatar,
+      site_name: s.site_name,
+      contact_email: s.contact_email,
+      whatsapp: s.whatsapp,
+      instagram: s.instagram,
+      github: s.github,
+      notifications: Boolean(s.notifications),
+      accent: s.accent
+    }
+  });
+});
+
+// SALVAR PERFIL
+
+app.put(
+  "/api/admin/settings/profile",
+  exigirAdmin,
+  (req, res, next) => {
+    const username = settingsText(req.body?.username, 100);
+    const displayName = settingsText(
+      req.body?.display_name,
+      100
+    );
+    const avatar = settingsText(req.body?.avatar, 300);
+
+    if (
+      !username ||
+      displayName === null ||
+      avatar === null ||
+      (
+        avatar &&
+        !/^\/assets\/uploads\/[a-f0-9-]+\.(png|jpg|jpeg|webp)$/i.test(
+          avatar
+        )
+      )
+    ) {
+      return res.status(400).json({
+        error: "Dados de perfil inválidos."
+      });
+    }
+
+    try {
+      const salvar = db.transaction(() => {
+        db.prepare(`
+          UPDATE admins
+          SET username = ?
+          WHERE id = ?
+        `).run(username, req.admin.id);
+
+        settingsRow(req.admin.id);
+
+        db.prepare(`
+          UPDATE admin_settings
+          SET display_name = ?, avatar = ?
+          WHERE admin_id = ?
+        `).run(displayName, avatar, req.admin.id);
+      });
+
+      salvar();
+
+      res.json({
+        success: true,
+        username,
+        display_name: displayName,
+        avatar
+      });
+    } catch (error) {
+      if (error.code === "SQLITE_CONSTRAINT_UNIQUE") {
+        return res.status(409).json({
+          error: "Esse nome de usuário já está em uso."
+        });
+      }
+
+      next(error);
+    }
+  }
+);
+
+// ALTERAR SENHA
+
+app.put(
+  "/api/admin/settings/password",
+  exigirAdmin,
+  (req, res) => {
+    const { current_password, new_password } = req.body || {};
+
+    if (
+      typeof current_password !== "string" ||
+      typeof new_password !== "string" ||
+      new_password.length < 12 ||
+      new_password.length > 1024
+    ) {
+      return res.status(400).json({
+        error: "A nova senha deve ter pelo menos 12 caracteres."
+      });
+    }
+
+    const admin = db.prepare(`
+      SELECT password_hash
+      FROM admins
+      WHERE id = ?
+    `).get(req.admin.id);
+
+    if (
+      !admin ||
+      !verificarSenha(
+        current_password,
+        admin.password_hash
+      )
+    ) {
+      return res.status(403).json({
+        error: "Senha atual incorreta."
+      });
+    }
+
+    const salt = crypto.randomBytes(32);
+    const hash = crypto.scryptSync(
+      new_password,
+      salt,
+      64
+    );
+
+    const hashFinal =
+      `scrypt:${salt.toString("hex")}:${hash.toString("hex")}`;
+
+    db.prepare(`
+      UPDATE admins
+      SET password_hash = ?
+      WHERE id = ?
+    `).run(hashFinal, req.admin.id);
+
+    res.json({
+      success: true,
+      message: "Senha atualizada com sucesso."
+    });
+  }
+);
+
+// INFORMAÇÕES DO SITE
+
+app.put(
+  "/api/admin/settings/site",
+  exigirAdmin,
+  (req, res) => {
+    const fields = {
+      site_name: settingsText(req.body?.site_name, 100),
+      contact_email: settingsText(
+        req.body?.contact_email,
+        254
+      ),
+      whatsapp: settingsText(req.body?.whatsapp, 25),
+      instagram: settingsText(req.body?.instagram, 500),
+      github: settingsText(req.body?.github, 500)
+    };
+
+    if (
+      Object.values(fields).some((v) => v === null) ||
+      !fields.site_name ||
+      (
+        fields.contact_email &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          fields.contact_email
+        )
+      ) ||
+      !safeHttpUrl(fields.instagram) ||
+      !safeHttpUrl(fields.github)
+    ) {
+      return res.status(400).json({
+        error: "Verifique as informações e os links."
+      });
+    }
+
+    settingsRow(req.admin.id);
+
+    db.prepare(`
+      UPDATE admin_settings
+      SET
+        site_name = ?,
+        contact_email = ?,
+        whatsapp = ?,
+        instagram = ?,
+        github = ?
+      WHERE admin_id = ?
+    `).run(
+      fields.site_name,
+      fields.contact_email,
+      fields.whatsapp,
+      fields.instagram,
+      fields.github,
+      req.admin.id
+    );
+
+    res.json({ success: true });
+  }
+);
+
+// PREFERÊNCIAS
+
+app.put(
+  "/api/admin/settings/preferences",
+  exigirAdmin,
+  (req, res) => {
+    const { notifications, accent } = req.body || {};
+
+    if (
+      typeof notifications !== "boolean" ||
+      !["red", "purple"].includes(accent)
+    ) {
+      return res.status(400).json({
+        error: "Preferências inválidas."
+      });
+    }
+
+    settingsRow(req.admin.id);
+
+    db.prepare(`
+      UPDATE admin_settings
+      SET notifications = ?, accent = ?
+      WHERE admin_id = ?
+    `).run(
+      notifications ? 1 : 0,
+      accent,
+      req.admin.id
+    );
+
+    res.json({ success: true });
+  }
+);
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+const limitarLogin = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  message: {
+    error: "Muitas tentativas. Aguarde 15 minutos."
+  }
+});
+
+app.post(
+  "/api/auth/login",
+  limitarLogin,
+  (req, res, next) => {
+    const { username, password } = req.body || {};
+
+    if (
+      typeof username !== "string" ||
+      typeof password !== "string" ||
+      username.length > 100 ||
+      password.length > 1024
+    ) {
+      return res.status(400).json({
+        error: "Informe usuário e senha válidos."
+      });
+    }
+
+    const admin = db.prepare(`
+      SELECT *
+      FROM admins
+      WHERE username = ?
+    `).get(username.trim());
+
+    if (
+      !admin ||
+      !verificarSenha(password, admin.password_hash)
+    ) {
+      return res.status(401).json({
+        error: "Usuário ou senha incorretos."
+      });
+    }
+
+    req.session.regenerate((error) => {
+      if (error) return next(error);
+
+      req.session.adminId = admin.id;
+
+      req.session.save((saveError) => {
+        if (saveError) return next(saveError);
+
+        res.json({
+          success: true,
+          username: admin.username
+        });
+      });
+    });
+  }
+);
+
+app.get("/api/auth/me", exigirAdmin, (req, res) => {
+  res.json({
+    authenticated: true,
+    username: req.admin.username
+  });
+});
+
+app.post("/api/auth/logout", (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) return next(error);
+
+    res.clearCookie("asta.sid");
+
+    res.json({ success: true });
+  });
+});
+
+// ==========================================
+// VALIDAÇÃO DAS MISSÕES
+// ==========================================
+
+function validarMissao(dados) {
+  if (
+    !dados ||
+    typeof dados !== "object" ||
+    Array.isArray(dados)
+  ) {
+    return { error: "Dados inválidos." };
+  }
+
+  const limites = {
+    title: 150,
+    category: 30,
+    description: 5000,
+    technologies: 500,
+    image: 2000,
+    website: 2000,
+    github: 2000,
+    status: 30
+  };
+
+  const missao = {};
+
+  for (const [campo, limite] of Object.entries(limites)) {
+    const valor = dados[campo] ?? "";
+
+    if (
+      typeof valor !== "string" ||
+      valor.length > limite
+    ) {
+      return {
+        error: `Campo ${campo} inválido ou muito longo.`
+      };
+    }
+
+    missao[campo] = valor.trim();
+  }
+
+  if (!missao.title || !missao.description) {
+    return {
+      error: "Informe o nome e a descrição do projeto."
+    };
+  }
+
+  if (!["web", "sistemas", "gamer"].includes(missao.category)) {
+    return { error: "Categoria inválida." };
+  }
+
+  if (!["draft", "published"].includes(missao.status)) {
+    return { error: "Status inválido." };
+  }
+
+  for (const campo of ["image", "website", "github"]) {
+    const valor = missao[campo];
+
+    if (!valor) continue;
+
+    if (
+      campo === "image" &&
+      /^\/assets\/uploads\/[a-f0-9-]+\.(png|jpg|jpeg|webp)$/i.test(
+        valor
+      )
+    ) {
+      continue;
+    }
+
+    if (!safeHttpUrl(valor)) {
+      return {
+        error: `O link do campo ${campo} é inválido.`
+      };
+    }
+  }
+
+  return { missao };
+}
+
+function idValido(valor) {
+  const id = Number(valor);
+
+  return Number.isSafeInteger(id) && id > 0
+    ? id
+    : null;
+}
+
+// ==========================================
+// DASHBOARD
+// ==========================================
+
+app.get("/api/admin/overview", exigirAdmin, (req, res) => {
+  const resultado = db.prepare(`
+    SELECT
+      COUNT(*) AS total,
+      SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END)
+        AS published,
+      SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END)
+        AS drafts
+    FROM missions
+  `).get();
+
+  const mensagens = db.prepare(`
+    SELECT COUNT(*) AS total
+    FROM contact_messages
+    WHERE is_read = 0
+  `).get();
+
+  res.json({
+    total: resultado.total || 0,
+    published: resultado.published || 0,
+    drafts: resultado.drafts || 0,
+    messages: mensagens.total || 0
+  });
+});
+
+// ==========================================
+// LISTAR MISSÕES
+// ==========================================
+
+app.get("/api/admin/missions", exigirAdmin, (req, res) => {
+  const missions = db.prepare(`
+    SELECT *
+    FROM missions
+    ORDER BY created_at DESC, id DESC
+  `).all();
+
+  res.json({ missions });
+});
+
+// CONSULTAR MISSÃO
+
+app.get("/api/admin/missions/:id", exigirAdmin, (req, res) => {
+  const id = idValido(req.params.id);
+
+  if (!id) {
+    return res.status(400).json({
+      error: "ID inválido."
+    });
+  }
+
+  const mission = db.prepare(`
+    SELECT *
+    FROM missions
+    WHERE id = ?
+  `).get(id);
+
+  if (!mission) {
+    return res.status(404).json({
+      error: "Missão não encontrada."
+    });
+  }
+
+  res.json({ mission });
+});
+
+// CADASTRAR MISSÃO
+
+app.post("/api/admin/missions", exigirAdmin, (req, res) => {
+  const resultado = validarMissao(req.body);
+
+  if (resultado.error) {
+    return res.status(400).json({
+      error: resultado.error
+    });
+  }
+
+  const m = resultado.missao;
+
+  const insert = db.prepare(`
+    INSERT INTO missions (
+      title, category, description, technologies,
+      image, website, github, status
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    m.title,
+    m.category,
+    m.description,
+    m.technologies,
+    m.image,
+    m.website,
+    m.github,
+    m.status
+  );
+
+  const mission = db.prepare(`
+    SELECT *
+    FROM missions
+    WHERE id = ?
+  `).get(insert.lastInsertRowid);
+
+  res.status(201).json({
+    success: true,
+    message: "Missão cadastrada com sucesso!",
+    mission
+  });
+});
+
+// EDITAR MISSÃO
+
+app.put("/api/admin/missions/:id", exigirAdmin, (req, res) => {
+  const id = idValido(req.params.id);
+
+  if (!id) {
+    return res.status(400).json({
+      error: "ID inválido."
+    });
+  }
+
+  const existente = db.prepare(`
+    SELECT id
+    FROM missions
+    WHERE id = ?
+  `).get(id);
+
+  if (!existente) {
+    return res.status(404).json({
+      error: "Missão não encontrada."
+    });
+  }
+
+  const resultado = validarMissao(req.body);
+
+  if (resultado.error) {
+    return res.status(400).json({
+      error: resultado.error
+    });
+  }
+
+  const m = resultado.missao;
+
+  db.prepare(`
+    UPDATE missions
+    SET
+      title = ?,
+      category = ?,
+      description = ?,
+      technologies = ?,
+      image = ?,
+      website = ?,
+      github = ?,
+      status = ?,
+      updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).run(
+    m.title,
+    m.category,
+    m.description,
+    m.technologies,
+    m.image,
+    m.website,
+    m.github,
+    m.status,
+    id
+  );
+
+  const mission = db.prepare(`
+    SELECT *
+    FROM missions
+    WHERE id = ?
+  `).get(id);
+
+  res.json({
+    success: true,
+    message: "Missão atualizada com sucesso!",
+    mission
+  });
+});
+
+// EXCLUIR MISSÃO
+
+app.delete("/api/admin/missions/:id", exigirAdmin, (req, res) => {
+  const id = idValido(req.params.id);
+
+  if (!id) {
+    return res.status(400).json({
+      error: "ID inválido."
+    });
+  }
+
+  const resultado = db.prepare(`
+    DELETE FROM missions
+    WHERE id = ?
+  `).run(id);
+
+  if (!resultado.changes) {
+    return res.status(404).json({
+      error: "Missão não encontrada."
+    });
+  }
+
+  res.json({
+    success: true,
+    message: "Missão excluída com sucesso!"
+  });
+});
+
+// ==========================================
+// PROJETOS PÚBLICOS
+// ==========================================
+
+app.get("/api/missions", (req, res) => {
+  const missions = db.prepare(`
+    SELECT
+      id, title, category, description,
+      technologies, image, website, github, created_at
+    FROM missions
+    WHERE status = 'published'
+    ORDER BY created_at DESC, id DESC
+  `).all();
+
+  res.json({ missions });
+});
+
+// ==========================================
+// UPLOAD DE IMAGENS
+// ==========================================
+
+app.post(
+  "/api/admin/upload-image",
+  exigirAdmin,
+  express.raw({
+    type: ["image/png", "image/jpeg", "image/webp"],
+    limit: "5mb"
+  }),
+  (req, res) => {
+    const buffer = req.body;
+
+    if (
+      !Buffer.isBuffer(buffer) ||
+      buffer.length === 0
+    ) {
+      return res.status(400).json({
+        error: "Selecione uma imagem PNG, JPG ou WebP."
+      });
+    }
+
+    let extensao = "";
+
+    if (
+      buffer.length >= 8 &&
+      buffer.subarray(0, 8).equals(
+        Buffer.from("89504e470d0a1a0a", "hex")
+      )
+    ) {
+      extensao = "png";
+    } else if (
+      buffer.length >= 3 &&
+      buffer[0] === 0xff &&
+      buffer[1] === 0xd8 &&
+      buffer[2] === 0xff
+    ) {
+      extensao = "jpg";
+    } else if (
+      buffer.length >= 12 &&
+      buffer.toString("ascii", 0, 4) === "RIFF" &&
+      buffer.toString("ascii", 8, 12) === "WEBP"
+    ) {
+      extensao = "webp";
+    }
+
+    if (!extensao) {
+      return res.status(400).json({
+        error: "Formato de imagem inválido."
+      });
+    }
+
+    const pasta = path.join(ROOT, "assets", "uploads");
+
+    fs.mkdirSync(pasta, { recursive: true });
+
+    const nome = `${crypto.randomUUID()}.${extensao}`;
+
+    fs.writeFileSync(
+      path.join(pasta, nome),
+      buffer,
+      { flag: "wx" }
+    );
+
+    res.status(201).json({
+      success: true,
+      image: `/assets/uploads/${nome}`
+    });
+  }
+);
+
+// ==========================================
+// CAPTURAS AUTOMÁTICAS
+// ==========================================
+
+const capturasEmAndamento = new Set();
+
+app.post(
+  "/api/admin/missions/:id/refresh-preview",
+  exigirAdmin,
+  async (req, res) => {
+    const id = idValido(req.params.id);
+
+    if (!id) {
+      return res.status(400).json({
+        error: "ID inválido."
+      });
+    }
+
+    const missao = db.prepare(`
+      SELECT *
+      FROM missions
+      WHERE id = ?
+    `).get(id);
+
+    if (!missao) {
+      return res.status(404).json({
+        error: "Missão não encontrada."
+      });
+    }
+
+    if (!missao.website?.trim()) {
+      return res.status(400).json({
+        error: "Cadastre primeiro o link do site nesta missão."
+      });
+    }
+
+    if (capturasEmAndamento.has(id)) {
+      return res.status(409).json({
+        error: "Já existe uma captura em andamento."
+      });
+    }
+
+    capturasEmAndamento.add(id);
+
+    const pasta = path.join(ROOT, "assets", "uploads");
+    const nome = `${crypto.randomUUID()}.png`;
+    const arquivo = path.join(pasta, nome);
+
+    try {
+      await fs.promises.mkdir(pasta, {
+        recursive: true
+      });
+
+      await gerarCaptura(missao.website, arquivo);
+
+      const atualizacao = db.prepare(`
+        UPDATE missions
+        SET
+          image = ?,
+          updated_at = CURRENT_TIMESTAMP
+        WHERE id = ? AND website = ?
+      `).run(
+        `/assets/uploads/${nome}`,
+        id,
+        missao.website
+      );
+
+      if (!atualizacao.changes) {
+        await fs.promises.unlink(arquivo).catch(() => {});
+
+        return res.status(409).json({
+          error: "A missão foi alterada. Tente novamente."
+        });
+      }
+
+      const atualizada = db.prepare(`
+        SELECT *
+        FROM missions
+        WHERE id = ?
+      `).get(id);
+
+      return res.json({
+        success: true,
+        message: "Captura atualizada com sucesso!",
+        mission: atualizada
+      });
+    } catch (error) {
+      await fs.promises.unlink(arquivo).catch(() => {});
+
+      console.error("[PREVIEW] Erro:", error);
+
+      return res.status(422).json({
+        error: `Não foi possível capturar o site: ${error.message}`
+      });
+    } finally {
+      capturasEmAndamento.delete(id);
+    }
+  }
+);
+
+// ==========================================
+// ARQUIVOS ESTÁTICOS
+// ==========================================
+
+app.use("/css", express.static(path.join(ROOT, "css")));
+app.use("/js", express.static(path.join(ROOT, "js")));
+app.use("/assets", express.static(path.join(ROOT, "assets")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(ROOT, "index.html"));
+});
+
+app.get("/index.html", (req, res) => {
+  res.sendFile(path.join(ROOT, "index.html"));
+});
+
+app.get("/admin.html", (req, res) => {
+  res.sendFile(path.join(ROOT, "admin.html"));
+});
+
+// ==========================================
+// PÁGINA DE DETALHES DOS PROJETOS
+// ==========================================
+
+app.get("/projeto.html", (req, res) => {
+  res.sendFile(path.join(ROOT, "projeto.html"));
+});
+
+// ==========================================
+// ERROS
+// ==========================================
+
+app.use((error, req, res, next) => {
+  console.error(error);
+
+  if (error.status === 413) {
+    return res.status(413).json({
+      error: "Arquivo ou dados muito grandes."
+    });
+  }
+
+  res.status(500).json({
+    error: "Erro interno do servidor."
+  });
+});
+
+// ==========================================
+// CAPTURAS AUTOMÁTICAS
+// ==========================================
+
+iniciarCapturas(db, ROOT);
+
+// ==========================================
+// INICIAR SERVIDOR
+// ==========================================
+
+app.listen(PORT, "127.0.0.1", () => {
+  console.log("");
+  console.log("====================================");
+  console.log(" QG DOS TOUROS NEGROS ONLINE!");
+  console.log("====================================");
+  console.log("");
+  console.log("http://127.0.0.1:3000/admin.html");
+  console.log("");
+  console.log("Login conectado ao SQLite.");
+  console.log("Sistema de missões conectado.");
+  console.log("Sistema de mensagens conectado.");
+  console.log("Configurações conectadas ao SQLite.");
+  console.log("====================================");
+});
