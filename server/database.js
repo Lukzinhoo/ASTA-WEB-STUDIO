@@ -1,23 +1,44 @@
+"use strict";
 
 const path = require("node:path");
 const fs = require("node:fs");
 const Database = require("better-sqlite3");
 
-// Pasta onde o banco de dados será armazenado
-const dataDir = path.join(__dirname, "data");
+// ==========================================
+// ASTA WEB STUDIO
+// CONFIGURAÇÃO DO BANCO DE DADOS
+// ==========================================
 
-// Cria a pasta caso não exista
-fs.mkdirSync(dataDir, { recursive: true });
+// Permite utilizar armazenamento persistente
+// no ambiente de produção.
 
-// Abre ou cria o banco de dados
-const db = new Database(
-  path.join(dataDir, "asta.db")
-);
+const dataDir = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.join(__dirname, "data");
 
-// Melhora a operação do SQLite
+// Criar diretório do banco de dados.
+
+fs.mkdirSync(dataDir, {
+  recursive: true
+});
+
+// Caminho do banco.
+
+const databasePath = path.join(dataDir, "asta.db");
+
+// Abrir conexão.
+
+const db = new Database(databasePath);
+
+// Configurações de desempenho e integridade.
+
 db.pragma("journal_mode = WAL");
+db.pragma("foreign_keys = ON");
+db.pragma("busy_timeout = 5000");
+db.pragma("synchronous = NORMAL");
 
-// Cria a tabela de administradores
+// Tabela de administradores.
+
 db.exec(`
   CREATE TABLE IF NOT EXISTS admins (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,5 +48,8 @@ db.exec(`
   );
 `);
 
-// Exporta a conexão diretamente
+console.log("[DATABASE] Banco de dados conectado.");
+
+// Exportar conexão.
+
 module.exports = db;

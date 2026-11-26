@@ -1,19 +1,31 @@
 {
   "name": "asta-web-studio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "ASTA WEB STUDIO - Plataforma de gerenciamento de projetos e atendimento.",
+  "main": "server/server.js",
+  "private": true,
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "build": "playwright install chromium",
+    "test": "node --check server/server.js"
+  },
+  "engines": {
+    "node": "24.x"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lukzinhoo/asta-web-studio.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "asta-web-studio",
+    "portfolio",
+    "dashboard",
+    "express"
+  ],
+  "author": "Lukzinhoo",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Lukzinhoo/asta-web-studio/issues"
   },
