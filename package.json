@@ -18,18 +18,8 @@
     "type": "git",
     "url": "git+https://github.com/Lukzinhoo/asta-web-studio.git"
   },
-  "keywords": [
-    "asta-web-studio",
-    "portfolio",
-    "dashboard",
-    "express"
-  ],
   "author": "Lukzinhoo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Lukzinhoo/asta-web-studio/issues"
-  },
-  "homepage": "https://github.com/Lukzinhoo/asta-web-studio#readme",
   "dependencies": {
     "better-sqlite3": "^13.2.0",
     "connect-sqlite3": "^0.9.18",
@@ -39,5 +29,11 @@
     "helmet": "^8.3.0",
     "nodemailer": "^10.6.0",
     "playwright": "^1.65.1"
+  },
+  "devDependencies": {
+    "node-gyp": "^11.0.0"
+  },
+  "overrides": {
+    "node-gyp": "^11.0.0"
   }
 }
